@@ -103,12 +103,12 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
           <button
             type="button"
             onClick={openCommandPalette}
-            aria-label="Open Command Palette (Cmd + K)"
+            aria-label="Cmd+K: Open Command Palette"
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs text-[var(--muted)] hover:text-[var(--text)] bg-[var(--surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer"
           >
             <Search className="w-3.5 h-3.5 text-[var(--muted)]" aria-hidden="true" />
             <span className="sr-only sm:not-sr-only text-[11px] font-mono text-[var(--muted-dark)]">Cmd+K</span>
-            <kbd className="hidden font-mono text-[10px] px-1 py-0.2 rounded bg-black/50 text-[var(--muted)] border border-white/10">
+            <kbd aria-hidden="true" className="hidden font-mono text-[10px] px-1 py-0.2 rounded bg-black/50 text-[var(--muted)] border border-white/10">
               ⌘K
             </kbd>
           </button>

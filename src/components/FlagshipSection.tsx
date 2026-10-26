@@ -62,9 +62,11 @@ export function FlagshipSection({ flagships }: FlagshipSectionProps) {
       }
 
       // Restore focus to last active card trigger
-      if (lastTriggerRef.current) {
-        lastTriggerRef.current.focus();
-      }
+      setTimeout(() => {
+        if (lastTriggerRef.current) {
+          lastTriggerRef.current.focus();
+        }
+      }, 50);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -89,22 +91,26 @@ export function FlagshipSection({ flagships }: FlagshipSectionProps) {
   };
 
   const handleCloseOverlay = () => {
+    setIsOpen(false);
+    setActiveSlug(null);
+
     if (openedFromHome && window.location.pathname.startsWith('/work/')) {
       // Trigger history.back() which will cleanly popstate back to /
       window.history.back();
     } else {
-      setIsOpen(false);
-      setActiveSlug(null);
       if (window.location.pathname.startsWith('/work/')) {
         window.history.pushState(null, '', '/#work');
       }
       if (defaultTitleRef.current) {
         document.title = defaultTitleRef.current;
       }
+    }
+
+    setTimeout(() => {
       if (lastTriggerRef.current) {
         lastTriggerRef.current.focus();
       }
-    }
+    }, 50);
   };
 
   const activeFlagship = flagships.find((f) => f.slug === activeSlug);
@@ -154,6 +160,12 @@ export function FlagshipSection({ flagships }: FlagshipSectionProps) {
                   onClick={(e) => {
                     if (e.target === e.currentTarget) {
                       handleCloseOverlay();
+                    }
+                  }}
+                  onCloseAutoFocus={(e) => {
+                    e.preventDefault();
+                    if (lastTriggerRef.current) {
+                      lastTriggerRef.current.focus();
                     }
                   }}
                 >

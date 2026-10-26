@@ -164,8 +164,6 @@ export function MachineWiseDiagram() {
         <svg
           viewBox="0 0 1025 410"
           className="w-full h-auto block select-none"
-          role="img"
-          aria-label="Generic animated architecture diagram showing industrial telemetry flow from CNC machines through MQTT, Java microservices, Redis, MongoDB replica set, and WebSockets to React dashboard, with branches to ERP webhooks and Archive DR."
         >
           <defs>
             <style>{`
@@ -328,7 +326,6 @@ export function MachineWiseDiagram() {
                 key={node.id}
                 tabIndex={0}
                 role="button"
-                aria-label={`${node.title}: ${node.subtitle}. ${node.role}`}
                 className="cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 onClick={() => setActiveNodeId(node.id)}
                 onMouseEnter={() => setActiveNodeId(node.id)}

@@ -97,8 +97,6 @@ export function MqttGoDiagram() {
         <svg
           viewBox="0 0 925 240"
           className="w-full h-auto block select-none"
-          role="img"
-          aria-label="Animated architecture diagram showing MQTT-GO flow: Industrial Brokers -> Go Concurrency Core <-> SQLite Time-Travel Store -> Embedded React UI with sub-100MB footprint."
         >
           <defs>
             <style>{`
@@ -191,7 +189,6 @@ export function MqttGoDiagram() {
                 key={node.id}
                 tabIndex={0}
                 role="button"
-                aria-label={`${node.title}: ${node.subtitle}. ${node.role}`}
                 className="cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-emerald-400"
                 onClick={() => setActiveNodeId(node.id)}
                 onMouseEnter={() => setActiveNodeId(node.id)}

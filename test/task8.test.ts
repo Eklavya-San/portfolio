@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
@@ -25,6 +25,11 @@ function getAllFilesRecursively(dir: string, extension?: string): string[] {
 }
 
 describe('Task 8 Verification Gates', () => {
+  beforeAll(() => {
+    if (!existsSync(join(DIST_DIR, 'index.html'))) {
+      execSync('npm run build', { cwd: ROOT_DIR, stdio: 'inherit' });
+    }
+  });
   /* ==========================================================================
      GATE 1: Prerendered Work Routes & Case Studies
      ========================================================================== */
