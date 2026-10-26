@@ -77,14 +77,16 @@ describe('Flagship Case Studies and Static Paths', () => {
     expect(matchWorkRoute('/work/unknown-project')).toBeNull();
   });
 
-  it('constructs correct metadata for each static route', () => {
+  it('constructs correct metadata and OG image for each static route', () => {
     for (const project of flagships) {
       const pageTitle = `${project.title} — Case Study | Eklavya Ghodake`;
       const pageDescription = project.tagline;
+      const ogImage = `/og/${project.slug}.png`;
 
       expect(pageTitle).toContain(project.title);
       expect(pageTitle).toContain('Eklavya Ghodake');
       expect(pageDescription).toBe(project.tagline);
+      expect(ogImage).toBe(`/og/${project.slug}.png`);
     }
   });
 });

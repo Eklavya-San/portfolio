@@ -1,5 +1,6 @@
 import type { Flagship } from '../types/portfolio';
 import { ArrowRight } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface FlagshipCardProps {
   flagship: Flagship;
@@ -9,11 +10,18 @@ interface FlagshipCardProps {
 export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
   const isEnterprise = flagship.slug === 'machinewise';
   const badgeLabel = isEnterprise ? 'Enterprise Case Study' : 'Open Source';
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div
+    <motion.div
       id={`flagship-card-${flagship.slug}`}
-      className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-7 flex flex-col justify-between hover:border-[var(--accent)]/50 hover:bg-[var(--surface-hover)] transition-all duration-300 shadow-xl relative overflow-hidden"
+      layoutId={shouldReduceMotion ? undefined : `flagship-card-${flagship.slug}`}
+      transition={
+        shouldReduceMotion
+          ? { duration: 0 }
+          : { type: 'spring', stiffness: 350, damping: 30 }
+      }
+      className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-7 flex flex-col justify-between hover:border-[var(--accent)]/50 hover:bg-[var(--surface-hover)] transition-colors duration-300 shadow-xl relative overflow-hidden"
     >
       {/* Subtle Accent Glow Corner */}
       <div
@@ -100,6 +108,6 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -20,7 +20,7 @@ const pageTitle = `${flagship.title} — Case Study | Eklavya Ghodake`;
 const pageDescription = flagship.tagline;
 ---
 
-<Base title={pageTitle} description={pageDescription}>
+<Base title={pageTitle} description={pageDescription} ogImage={`/og/${flagship.slug}.png`}>
   <Nav client:load />
   <CommandPalette client:idle />
 

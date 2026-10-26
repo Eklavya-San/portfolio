@@ -317,7 +317,6 @@ export function MachineWiseDiagram() {
             <polygon points="743,204 748,207 743,210" />
             <polygon points="898,204 903,207 898,210" />
             <polygon points="439,102 442,97 445,102" />
-            <polygon points="439,102 442,97 445,102" />
             <polygon points="629,303 632,308 635,303" />
           </g>
 

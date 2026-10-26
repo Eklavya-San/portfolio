@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
+import { motion, AnimatePresence, useReducedMotion, LayoutGroup } from 'motion/react';
 import type { Flagship } from '../types/portfolio';
 import { FlagshipCard } from './FlagshipCard';
 import { CaseStudyView } from './CaseStudyView';
@@ -14,6 +15,7 @@ export function FlagshipSection({ flagships }: FlagshipSectionProps) {
   const [openedFromHome, setOpenedFromHome] = useState<boolean>(false);
   const lastTriggerRef = useRef<HTMLElement | null>(null);
   const defaultTitleRef = useRef<string>('');
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     defaultTitleRef.current = document.title || 'Eklavya Ghodake | Software R&D Lead — claudya.in';
@@ -108,55 +110,88 @@ export function FlagshipSection({ flagships }: FlagshipSectionProps) {
   const activeFlagship = flagships.find((f) => f.slug === activeSlug);
 
   return (
-    <div className="space-y-6">
-      {/* 3 Flagship Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {flagships.map((project) => (
-          <FlagshipCard
-            key={project.slug}
-            flagship={project}
-            onOpenOverlay={handleOpenOverlay}
-          />
-        ))}
-      </div>
+    <LayoutGroup id="flagships">
+      <div className="space-y-6">
+        {/* 3 Flagship Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {flagships.map((project) => (
+            <FlagshipCard
+              key={project.slug}
+              flagship={project}
+              onOpenOverlay={handleOpenOverlay}
+            />
+          ))}
+        </div>
 
-      {/* Accessible Radix Dialog Modal */}
-      <Dialog.Root
-        open={isOpen && !!activeFlagship}
-        onOpenChange={(open) => {
-          if (!open) {
-            handleCloseOverlay();
-          }
-        }}
-      >
-        <Dialog.Portal>
-          {/* Backdrop with Obsidian Blur */}
-          <Dialog.Overlay className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md transition-all duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0" />
+        {/* Accessible Radix Dialog Modal */}
+        <Dialog.Root
+          open={isOpen && !!activeFlagship}
+          onOpenChange={(open) => {
+            if (!open) {
+              handleCloseOverlay();
+            }
+          }}
+        >
+          <AnimatePresence>
+            {isOpen && activeFlagship && (
+              <Dialog.Portal forceMount>
+                {/* Backdrop with Obsidian Blur */}
+                <Dialog.Overlay asChild forceMount>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: shouldReduceMotion ? 0 : 0.25 }}
+                    className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md"
+                  />
+                </Dialog.Overlay>
 
-          {/* Modal Container with Scroll Lock & Focus Trap */}
-          <Dialog.Content
-            className="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center outline-none"
-            aria-describedby="case-study-description"
-          >
-            {activeFlagship && (
-              <div className="w-full max-w-4xl my-auto rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8 md:p-10 shadow-2xl transition-all duration-300 relative focus:outline-none">
-                <Dialog.Title className="sr-only">
-                  {activeFlagship.title} Case Study
-                </Dialog.Title>
-                <Dialog.Description id="case-study-description" className="sr-only">
-                  {activeFlagship.tagline}
-                </Dialog.Description>
+                {/* Modal Container with Scroll Lock & Focus Trap */}
+                <Dialog.Content
+                  forceMount
+                  className="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-10 flex items-start justify-center outline-none"
+                  aria-describedby="case-study-description"
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                      handleCloseOverlay();
+                    }
+                  }}
+                >
+                  <motion.div
+                    layoutId={
+                      shouldReduceMotion
+                        ? undefined
+                        : `flagship-card-${activeFlagship.slug}`
+                    }
+                    transition={
+                      shouldReduceMotion
+                        ? { duration: 0 }
+                        : { type: 'spring', stiffness: 350, damping: 30 }
+                    }
+                    className="w-full max-w-4xl my-auto rounded-3xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8 md:p-10 shadow-2xl relative focus:outline-none"
+                  >
+                    <Dialog.Title className="sr-only">
+                      {activeFlagship.title} Case Study
+                    </Dialog.Title>
+                    <Dialog.Description
+                      id="case-study-description"
+                      className="sr-only"
+                    >
+                      {activeFlagship.tagline}
+                    </Dialog.Description>
 
-                <CaseStudyView
-                  flagship={activeFlagship}
-                  isStandalone={false}
-                  onClose={handleCloseOverlay}
-                />
-              </div>
+                    <CaseStudyView
+                      flagship={activeFlagship}
+                      isStandalone={false}
+                      onClose={handleCloseOverlay}
+                    />
+                  </motion.div>
+                </Dialog.Content>
+              </Dialog.Portal>
             )}
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
-    </div>
+          </AnimatePresence>
+        </Dialog.Root>
+      </div>
+    </LayoutGroup>
   );
 }
