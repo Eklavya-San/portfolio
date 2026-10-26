@@ -3,7 +3,7 @@ import type { Profile } from '../types/portfolio';
 export const profileLinks = {
   github: 'https://github.com/Eklavya-San',
   x: 'https://x.com/eghodake',
-  linkedin: 'https://linkedin.com/in/eklavya-san',
+  linkedin: 'https://linkedin.com/in/eklavya-ghodake-0bb604197',
   email: 'mailto:eklavyaghodake@gmail.com',
   youtube: 'https://youtube.com/@developer_by_choice',
 };

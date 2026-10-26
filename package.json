@@ -11,7 +11,9 @@
     "check": "astro check",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "verify": "npm run build && npm run check && vitest run && node scripts/check-todos.mjs && node scripts/check-links.mjs && npm run test:e2e"
+    "check:todos": "node scripts/check-todos.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "verify": "npm run build && npm run check && vitest run && npm run check:todos && npm run check:links && npm run test:e2e"
   },
   "dependencies": {
     "@fontsource/inter": "5.3.0",
