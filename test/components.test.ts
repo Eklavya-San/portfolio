@@ -11,7 +11,7 @@ describe('Nav and Identity Invariants', () => {
 
   it('profile bio contains exactly 2 sentences', () => {
     expect(profile.bio).toHaveLength(2);
-    expect(profile.bio[0]).toContain('Senior Software Engineer');
+    expect(profile.bio[0]).toContain('Manager – Software R&D');
     expect(profile.bio[1]).toContain('agentic developer tools');
   });
 

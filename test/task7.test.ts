@@ -41,7 +41,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
       expect(content).toContain('schema.org');
       expect(content).toContain('Person');
       expect(content).toContain('Eklavya Ghodake');
-      expect(content).toContain('Senior Software Engineer');
+      expect(content).toContain('Manager – Software R&D');
       expect(content).toContain('https://github.com/Eklavya-San');
       expect(content).toContain('https://x.com/eghodake');
     });
@@ -66,7 +66,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
     it('provides high-resolution 1200x630 OpenGraph cards in public/og/', () => {
       const requiredImages = [
         'default.png',
-        'machinewise.png',
+        'document-rag.png',
         'mqtt-go.png',
         'ctq-extraction.png',
       ];
@@ -85,7 +85,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
     });
 
     it('provides vector SVG sources for all OG cards', () => {
-      const svgs = ['default.svg', 'machinewise.svg', 'mqtt-go.svg', 'ctq-extraction.svg'];
+      const svgs = ['default.svg', 'document-rag.svg', 'mqtt-go.svg', 'ctq-extraction.svg'];
       for (const svg of svgs) {
         const svgPath = resolve(rootDir, 'public/og', svg);
         expect(existsSync(svgPath)).toBe(true);
@@ -110,7 +110,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
       const sitemapSrc = resolve(rootDir, 'src/pages/sitemap.xml.ts');
       expect(existsSync(sitemapSrc)).toBe(true);
       const content = readFileSync(sitemapSrc, 'utf-8');
-      expect(content).toContain('work/machinewise');
+      expect(content).toContain('work/document-rag');
       expect(content).toContain('work/mqtt-go');
       expect(content).toContain('work/ctq-extraction');
       expect(content).toContain('resume');

@@ -11,12 +11,12 @@ export const profileLinks = {
 export const profile: Profile = {
   name: 'Eklavya Ghodake',
   legalName: 'Eklavya Shivaji Ghodake',
-  title: 'Senior Software Engineer | Full-Stack, Distributed Systems & Applied AI',
+  title: 'Manager – Software R&D | Full-Stack, Distributed Systems & Applied AI',
   location: 'Pune / Maharashtra, India',
   positioning:
-    'Full-Stack Software Engineer building high-throughput distributed systems, real-time event streaming pipelines, and applied AI developer tooling.',
+    'Manager – Software R&D building high-throughput distributed systems, real-time event streaming pipelines, and applied AI developer tooling.',
   bio: [
-    'Senior Software Engineer with hands-on expertise building event-driven microservices, real-time streaming architectures, and high-performance web platforms.',
+    'Manager – Software R&D with hands-on expertise building event-driven microservices, real-time streaming architectures, and applied AI platforms.',
     'Proven track record slashing cloud database storage by 70%, architecting zero-data-loss disaster recovery, and developing open-source agentic developer tools.',
   ],
   links: profileLinks,

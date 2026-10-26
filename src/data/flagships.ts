@@ -2,28 +2,6 @@ import type { Flagship } from '../types/portfolio';
 
 export const flagships: Flagship[] = [
   {
-    slug: 'machinewise',
-    title: 'MachineWise',
-    badge: 'Enterprise Production Case Study',
-    tagline: 'High-throughput operational telemetry, capacity planning workflows, and zero-loss disaster recovery across MongoDB clusters.',
-    stack: ['React', 'Node.js', 'MongoDB', 'Docker Compose', 'Nginx', 'MQTT / EMQX', 'ApexCharts', 'Linux'],
-    metrics: [
-      { label: 'DB Storage', value: '-70%' },
-      { label: 'DR Data Loss', value: '0' },
-      { label: 'Platform Uptime', value: '99.9%+' },
-    ],
-    caseStudy: {
-      problem: 'Ingesting continuous high-frequency operational telemetry on constrained on-premises customer infrastructure caused severe database storage bloat and slow aggregation queries across scheduling, capacity planning, and shift reporting views.',
-      decision: 'Architected an event-driven on-change compression and tiered aggregation pipeline. Packaged microservices with Docker Compose and Nginx reverse proxying for air-gapped on-site deployment, and engineered automated daily backup scripts syncing MongoDB dumps to network-attached storage (NAS) with zero-loss recovery.',
-      architectureKey: 'machinewise',
-      results: [
-        'Reduced continuous time-series database storage costs by 70% using on-change delta compression and tiered time-bucket rollups.',
-        'Achieved 0 data loss during production MongoDB cluster recovery via automated backup scripts and NAS synchronization.',
-        'Delivered full-stack job scheduling, monthly capacity planning (booked vs. free capacity), and sub-second operational dashboards with 99.9%+ platform uptime.',
-      ],
-    },
-  },
-  {
     slug: 'mqtt-go',
     title: 'MQTT-GO',
     badge: 'Open Source',
@@ -66,5 +44,27 @@ export const flagships: Flagship[] = [
       ],
     },
     repoUrl: 'https://github.com/Eklavya-San/CTQ-extraction',
+  },
+  {
+    slug: 'document-rag',
+    title: 'Document RAG',
+    badge: 'Open Source',
+    tagline: 'On-premises retrieval-augmented generation engine with local LLM inference, zero cloud data egress, and source-grounded citation.',
+    stack: ['Python', 'Ollama', 'ChromaDB', 'LangChain', 'FastAPI', 'Local LLMs'],
+    metrics: [
+      { label: 'Cloud Egress', value: 'Zero' },
+      { label: 'Inference', value: '100% Local' },
+    ],
+    caseStudy: {
+      problem: 'Enterprise engineering and manufacturing teams cannot send proprietary machinery manuals, SOPs, or internal schematics to public cloud LLM APIs due to strict data privacy and air-gap network constraints.',
+      decision: 'Architected an on-premise RAG pipeline running fully local LLMs via Ollama and llama.cpp, utilizing chunked semantic vector embeddings and exact passage retrieval to generate factual, hallucination-free answers with verbatim page citations.',
+      architectureKey: 'document-rag',
+      results: [
+        '100% private on-premises execution with zero external data egress or cloud API dependencies.',
+        'Accurate source attribution with exact section and page citations from dense technical PDF manuals.',
+        'Sub-second local semantic retrieval and prompt synthesis on modest workstation hardware.',
+      ],
+    },
+    repoUrl: 'https://github.com/Eklavya-San/document_rag',
   },
 ];

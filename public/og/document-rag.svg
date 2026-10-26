@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg-glow-doc-rag" cx="0%" cy="0%" r="60%" fx="0%" fy="0%">
+      <stop offset="0%" stop-color="rgba(16, 185, 129, 0.22)" />
+      <stop offset="100%" stop-color="rgba(3, 7, 18, 0)" />
+    </radialGradient>
+    <radialGradient id="br-glow-doc-rag" cx="100%" cy="100%" r="50%" fx="100%" fy="100%">
+      <stop offset="0%" stop-color="rgba(6, 182, 212, 0.12)" />
+      <stop offset="100%" stop-color="rgba(3, 7, 18, 0)" />
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Dark Obsidian Base -->
+  <rect width="1200" height="630" fill="#030712" />
+
+  <!-- Ambient Glows -->
+  <rect width="1200" height="630" fill="url(#bg-glow-doc-rag)" />
+  <rect width="1200" height="630" fill="url(#br-glow-doc-rag)" />
+
+  <!-- Subtle Engineering Grid -->
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <!-- Border Card Inset -->
+  <rect x="30" y="30" width="1140" height="570" rx="24" fill="rgba(17, 24, 39, 0.4)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1.5" />
+
+  <!-- Brand Pill Header -->
+  <g transform="translate(80, 75)">
+    <rect width="138" height="36" rx="18" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <circle cx="18" cy="18" r="5" fill="#10b981" />
+    <text x="32" y="23" fill="#f9fafb" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="600">claudya.in</text>
+  </g>
+
+  <!-- Category Badge -->
+  <g transform="translate(230, 75)">
+    <rect width="280" height="36" rx="18" fill="rgba(16, 185, 129, 0.08)" stroke="#10b981" stroke-opacity="0.3" stroke-width="1" />
+    <text x="20" y="23" fill="#10b981" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600">FLAGSHIP OPEN SOURCE // 03</text>
+  </g>
+
+  <!-- Title -->
+  <text x="80" y="210" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" letter-spacing="-1.5">Document RAG</text>
+
+  <!-- Tagline / Description (Two-line wrapped) -->
+  <text x="80" y="280" fill="#9ca3af" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="400" width="1040">
+    On-premises retrieval-augmented generation engine with local LLM inference, zero cloud data egress, and source-grounded citation.
+  </text>
+
+  <!-- Tech Stack Pills -->
+  <g transform="translate(80, 340)">
+    <rect x="0" y="0" width="90" height="32" rx="16" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <text x="45" y="21" text-anchor="middle" fill="#d1d5db" font-family="ui-monospace, monospace" font-size="13">Python</text>
+
+    <rect x="100" y="0" width="90" height="32" rx="16" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <text x="145" y="21" text-anchor="middle" fill="#d1d5db" font-family="ui-monospace, monospace" font-size="13">Ollama</text>
+
+    <rect x="200" y="0" width="115" height="32" rx="16" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <text x="257" y="21" text-anchor="middle" fill="#d1d5db" font-family="ui-monospace, monospace" font-size="13">ChromaDB</text>
+
+    <rect x="325" y="0" width="115" height="32" rx="16" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <text x="382" y="21" text-anchor="middle" fill="#d1d5db" font-family="ui-monospace, monospace" font-size="13">LangChain</text>
+
+    <rect x="450" y="0" width="125" height="32" rx="16" fill="rgba(255, 255, 255, 0.05)" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+    <text x="512" y="21" text-anchor="middle" fill="#d1d5db" font-family="ui-monospace, monospace" font-size="13">Local LLMs</text>
+  </g>
+
+  <!-- Metric Badges Row -->
+  <g transform="translate(80, 420)">
+    <rect width="240" height="96" rx="16" fill="rgba(16, 185, 129, 0.06)" stroke="rgba(16, 185, 129, 0.25)" stroke-width="1.5" />
+    <text x="24" y="48" fill="#10b981" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="800">Zero</text>
+    <text x="24" y="76" fill="#9ca3af" font-family="ui-monospace, monospace" font-size="13" font-weight="500">Cloud Data Egress</text>
+
+    <rect x="260" width="240" height="96" rx="16" fill="rgba(6, 182, 212, 0.06)" stroke="rgba(6, 182, 212, 0.25)" stroke-width="1.5" />
+    <text x="284" y="48" fill="#06b6d4" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="800">100%</text>
+    <text x="284" y="76" fill="#9ca3af" font-family="ui-monospace, monospace" font-size="13" font-weight="500">On-Premises Inference</text>
+  </g>
+
+  <!-- Author Signature -->
+  <g transform="translate(80, 545)">
+    <text fill="#6b7280" font-family="ui-monospace, monospace" font-size="13">Architected &amp; Built by Eklavya Ghodake • Manager – Software R&amp;D</text>
+  </g>
+</svg>

@@ -1,2 +1,4 @@
 # Redirect shortlinks
 /resume  /Eklavya_Ghodake_Resume.pdf  302
+/work/machinewise   /#experience  301
+/work/machinewise/  /#experience  301

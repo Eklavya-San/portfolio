@@ -6,7 +6,7 @@ export interface FlagshipMetric {
 export interface FlagshipCaseStudy {
   problem: string;
   decision: string;
-  architectureKey: 'machinewise' | 'mqtt-go' | 'ctq-extraction';
+  architectureKey: 'document-rag' | 'mqtt-go' | 'ctq-extraction' | 'machinewise';
   results: string[];
 }
 

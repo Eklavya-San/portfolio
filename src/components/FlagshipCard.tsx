@@ -43,7 +43,7 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
             {badgeLabel}
           </span>
           <span className="text-[11px] font-mono text-[var(--muted-dark)]">
-            // 0{flagship.slug === 'machinewise' ? '1' : flagship.slug === 'mqtt-go' ? '2' : '3'}
+            // 0{flagship.slug === 'mqtt-go' ? '1' : flagship.slug === 'ctq-extraction' ? '2' : '3'}
           </span>
         </div>
 

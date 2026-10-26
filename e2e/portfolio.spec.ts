@@ -12,16 +12,16 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
   /* ==========================================================================
      Test A: Direct case study navigation
      ========================================================================== */
-  test('A: Direct case study navigation: visiting /work/machinewise renders full case study', async ({
+  test('A: Direct case study navigation: visiting /work/mqtt-go renders full case study', async ({
     page,
   }) => {
-    await page.goto('/work/machinewise');
-    await expect(page).toHaveTitle(/MachineWise/);
+    await page.goto('/work/mqtt-go');
+    await expect(page).toHaveTitle(/MQTT-GO/);
 
-    const h1 = page.getByRole('heading', { level: 1, name: 'MachineWise' });
+    const h1 = page.getByRole('heading', { level: 1, name: 'MQTT-GO' });
     await expect(h1).toBeVisible();
 
-    await expect(page.locator('text=Enterprise Case Study').first()).toBeVisible();
+    await expect(page.locator('text=Open Source').first()).toBeVisible();
     await expect(page.locator('text=The Problem & Operational Context').first()).toBeVisible();
     await expect(page.locator('text=Key Architectural Decisions').first()).toBeVisible();
     await expect(page.locator('text=Interactive Architecture Topology').first()).toBeVisible();
@@ -40,25 +40,25 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
-    const cardLink = page.locator('a[href="/work/machinewise"]').first();
+    const cardLink = page.locator('a[href="/work/mqtt-go"]').first();
     await cardLink.scrollIntoViewIfNeeded();
     await cardLink.click();
 
-    // Verify overlay opens and URL changes to /work/machinewise
+    // Verify overlay opens and URL changes to /work/mqtt-go
     const dialog = page.locator('[role="dialog"]');
     await expect(dialog).toBeVisible();
-    expect(page.url()).toContain('/work/machinewise');
-    await expect(dialog).toContainText('MachineWise');
+    expect(page.url()).toContain('/work/mqtt-go');
+    await expect(dialog).toContainText('MQTT-GO');
 
     // Browser Back should close overlay and return to /
     await page.goBack();
     await expect(dialog).toBeHidden();
     expect(new URL(page.url()).pathname).toBe('/');
 
-    // Browser Forward should re-open overlay and return to /work/machinewise
+    // Browser Forward should re-open overlay and return to /work/mqtt-go
     await page.goForward();
     await expect(dialog).toBeVisible();
-    expect(page.url()).toContain('/work/machinewise');
+    expect(page.url()).toContain('/work/mqtt-go');
   });
 
   /* ==========================================================================
@@ -70,7 +70,7 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
 
-    const cardLink = page.locator('a[href="/work/machinewise"]').first();
+    const cardLink = page.locator('a[href="/work/mqtt-go"]').first();
     await cardLink.scrollIntoViewIfNeeded();
     await cardLink.click();
 
@@ -154,7 +154,7 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
   /* ==========================================================================
      Test G: Axe accessibility audit
      ========================================================================== */
-  test('G: Axe accessibility audit: 0 critical or serious violations on / and /work/machinewise', async ({
+  test('G: Axe accessibility audit: 0 critical or serious violations on / and /work/mqtt-go', async ({
     page,
   }) => {
     // 1. Audit Homepage
@@ -170,7 +170,7 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
     ).toEqual([]);
 
     // 2. Audit Work Case Study
-    await page.goto('/work/machinewise');
+    await page.goto('/work/mqtt-go');
     await page.waitForLoadState('networkidle');
     const workScan = await new AxeBuilder({ page }).analyze();
     const workViolations = workScan.violations.filter(
@@ -216,7 +216,7 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
       });
 
       // Check Standalone Case Study
-      await page.goto('/work/machinewise');
+      await page.goto('/work/mqtt-go');
       await page.waitForLoadState('networkidle');
 
       const workHasOverflow = await page.evaluate(() => {
@@ -228,7 +228,7 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
       ).toBe(false);
 
       await page.screenshot({
-        path: join(SCREENSHOTS_DIR, `work-machinewise-${vp.name}.png`),
+        path: join(SCREENSHOTS_DIR, `work-mqtt-go-${vp.name}.png`),
         fullPage: true,
       });
     }

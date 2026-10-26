@@ -2,6 +2,7 @@ import type { Flagship } from '../types/portfolio';
 import { MachineWiseDiagram } from './diagrams/MachineWiseDiagram';
 import { MqttGoDiagram } from './diagrams/MqttGoDiagram';
 import { CtqDiagram } from './diagrams/CtqDiagram';
+import { DocumentRagDiagram } from './diagrams/DocumentRagDiagram';
 import {
   ArrowLeft,
   ExternalLink,
@@ -150,6 +151,7 @@ export function CaseStudyView({
         {flagship.caseStudy.architectureKey === 'machinewise' && <MachineWiseDiagram />}
         {flagship.caseStudy.architectureKey === 'mqtt-go' && <MqttGoDiagram />}
         {flagship.caseStudy.architectureKey === 'ctq-extraction' && <CtqDiagram />}
+        {flagship.caseStudy.architectureKey === 'document-rag' && <DocumentRagDiagram />}
       </section>
 
       {/* Section 4: Verified Results & Production Metrics */}

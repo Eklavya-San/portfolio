@@ -18,14 +18,6 @@ export const workshopOverrides: WorkshopCard[] = [
     description: 'Open-source MCP server running isolated dual-agent coding tasks against local and free LLM backends with zero token cost.',
   },
   {
-    repo: 'document_rag',
-    title: 'Document RAG',
-    tagline: 'On-prem RAG: Python, Ollama, local LLMs, zero external data egress',
-    tags: ['AI & LLMs', 'RAG', 'Python'],
-    stack: ['Python', 'FastAPI', 'Ollama', 'Vector DB'],
-    description: 'TODO(eklavya): consolidate document_rag / RAG repos and add README',
-  },
-  {
     repo: 'ai-vision-annotator',
     title: 'AI Vision Annotator',
     tagline: 'TODO(eklavya): needs description + screenshot before listing',

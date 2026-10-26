@@ -2,9 +2,9 @@ import type { APIRoute } from 'astro';
 
 const pages = [
   { url: '', changefreq: 'weekly', priority: '1.0' },
-  { url: 'work/machinewise/', changefreq: 'monthly', priority: '0.8' },
   { url: 'work/mqtt-go/', changefreq: 'monthly', priority: '0.8' },
   { url: 'work/ctq-extraction/', changefreq: 'monthly', priority: '0.8' },
+  { url: 'work/document-rag/', changefreq: 'monthly', priority: '0.8' },
   { url: 'resume/', changefreq: 'monthly', priority: '0.7' },
 ];
 

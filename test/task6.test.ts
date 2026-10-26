@@ -50,7 +50,6 @@ describe('Task 6: Workshop Grid and Cards', () => {
     const repos = workshopOverrides.map((o) => o.repo);
     expect(repos).toContain('use-shadcn');
     expect(repos).toContain('dsh-agent-mcp');
-    expect(repos).toContain('document_rag');
     expect(repos).toContain('mqtt-queue');
 
     const shadcn = workshopOverrides.find((o) => o.repo === 'use-shadcn');
@@ -67,7 +66,7 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
 
     const roles = experience.map((e) => e.role);
     expect(roles).toEqual([
-      'Software R&D Lead / Senior Software Engineer',
+      'Manager – Software R&D',
       'SDE II',
       'SDE I',
     ]);
@@ -76,7 +75,7 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
       expect(exp.company).toContain('Yantramedhavi India Pvt Ltd');
       expect(exp.location).toBe('Pune, India');
       expect(exp.bullets.length).toBeGreaterThanOrEqual(2);
-      expect(exp.bullets.length).toBeLessThanOrEqual(3);
+      expect(exp.bullets.length).toBeLessThanOrEqual(4);
     }
   });
 
@@ -89,11 +88,10 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
     expect(sde2Text).toContain('0 data loss');
     expect(sde2Text).toContain('WebSockets');
 
-    const rdLead = experience.find((e) => e.role === 'Software R&D Lead / Senior Software Engineer');
+    const rdLead = experience.find((e) => e.role === 'Manager – Software R&D');
     expect(rdLead).toBeDefined();
     const rdText = rdLead?.bullets.join(' ') || '';
     expect(rdText).toContain('99.9%+');
-    expect(rdText).toContain('MachineWise');
 
     const sde1 = experience.find((e) => e.role === 'SDE I');
     expect(sde1).toBeDefined();
@@ -215,7 +213,7 @@ describe('Task 6: Production Build Output Inspection', () => {
 
     // Experience items rendered
     expect(html).toContain('Yantramedhavi');
-    expect(html).toContain('Software R&amp;D Lead');
+    expect(html).toContain('Manager – Software R&amp;D');
     expect(html).toContain('SDE II');
     expect(html).toContain('SDE I');
     expect(html).toContain('IMTEX Bangalore');

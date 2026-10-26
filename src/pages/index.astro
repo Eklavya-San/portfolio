@@ -25,19 +25,37 @@ import { skills } from '../data/skills';
     {/* Verified Engineering Proof Strip */}
     <ProofStrip />
 
-    {/* Section 1: Flagship Work & Case Studies */}
+    {/* Section 1: Professional Experience & Leadership */}
+    <section id="experience" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] mb-3">
+          <span>// 01</span>
+          <span>PROFESSIONAL EXPERIENCE</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
+          Engineering Leadership &amp; Track Record
+        </h2>
+        <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
+          Leading industrial software architecture, on-premises applied AI, resilient infrastructure, and enterprise execution.
+        </p>
+      </div>
+
+      <Experience client:visible />
+    </section>
+
+    {/* Section 2: Selected Open-Source Work & Case Studies */}
     <section id="work" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
-          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] mb-3">
-            <span>// 01</span>
-            <span>FLAGSHIP CASE STUDIES</span>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent-2)] mb-3">
+            <span>// 02</span>
+            <span>OPEN-SOURCE FLAGSHIPS</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
-            Industrial Systems &amp; Applied AI
+            Open-Source Tools &amp; Applied AI
           </h2>
           <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
-            Mission-critical factory telemetry, high-concurrency protocols, and generative AI parsing engineering CAD.
+            Independently built and maintained developer utilities, agent skills, and privacy-preserving AI engines.
           </p>
         </div>
       </div>
@@ -47,24 +65,6 @@ import { skills } from '../data/skills';
 
     {/* Workshop: Experiments & Open Source */}
     <Workshop />
-
-    {/* Section 2: Experience & Leadership */}
-    <section id="experience" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
-      <div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent-2)] mb-3">
-          <span>// 02</span>
-          <span>CAREER HISTORY &amp; TALKS</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
-          Engineering Leadership &amp; Journey
-        </h2>
-        <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
-          Architecting distributed edge daemons, zero-loss recovery pipelines, and enterprise IoT platforms.
-        </p>
-      </div>
-
-      <Experience client:visible />
-    </section>
 
     {/* Section 3: Technical Skills & Protocols */}
     <section id="skills" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">

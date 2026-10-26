@@ -64,21 +64,17 @@ describe('Task 8 Verification Gates', () => {
       }
     });
 
-    it('verifies MachineWise confidentiality invariants in built HTML', () => {
+    it('verifies all 3 flagship case studies are independently owned open source with public repos', () => {
+      // MachineWise is NOT a public case study page (belongs exclusively in experience)
       const mwPath = join(DIST_DIR, 'work', 'machinewise', 'index.html');
-      const html = readFileSync(mwPath, 'utf-8');
+      expect(existsSync(mwPath)).toBe(false);
 
-      expect(html).toContain('MachineWise');
-      expect(html).toContain('Enterprise Production');
-      expect(html).toContain('CNC Machine Fleet');
-      expect(html).toContain('MQTT Broker');
-      expect(html).toContain('Java Microservices &amp; Redis');
-
-      // Must NOT contain any private repository URL or GitHub repo link for MachineWise
-      expect(html).not.toContain('github.com/Eklavya-San/MachineWise');
-      expect(html).not.toContain('github.com/Eklavya-San/machinewise');
-      expect(html).not.toContain('github.com/Eklavya-San/Operatorapp');
-      expect(html).not.toContain('github.com/Eklavya-San/CTQVision');
+      const docRagPath = join(DIST_DIR, 'work', 'document-rag', 'index.html');
+      const docRagHtml = readFileSync(docRagPath, 'utf-8');
+      expect(docRagHtml).toContain('Document RAG');
+      expect(docRagHtml).toContain('https://github.com/Eklavya-San/document_rag');
+      expect(docRagHtml).toContain('Open Source');
+      expect(docRagHtml).toContain('ChromaDB');
     });
 
     it('verifies open-source repository buttons in MQTT-GO and CTQ-Extraction', () => {
@@ -102,7 +98,7 @@ describe('Task 8 Verification Gates', () => {
   describe('Gate 2: Fluid Overlay & Navigation Routing Logic', () => {
     it('isolates section anchors from flagship modal routes', () => {
       // Valid flagship paths
-      expect(matchWorkRoute('/work/machinewise')?.slug).toBe('machinewise');
+      expect(matchWorkRoute('/work/document-rag')?.slug).toBe('document-rag');
       expect(matchWorkRoute('/work/mqtt-go')?.slug).toBe('mqtt-go');
       expect(matchWorkRoute('/work/ctq-extraction')?.slug).toBe('ctq-extraction');
 
@@ -220,7 +216,7 @@ describe('Task 8 Verification Gates', () => {
     it('verifies semantic HTML landmarks (<main>, <nav>, <footer>) on index and work pages', () => {
       const pagesToCheck = [
         join(DIST_DIR, 'index.html'),
-        join(DIST_DIR, 'work', 'machinewise', 'index.html'),
+        join(DIST_DIR, 'work', 'document-rag', 'index.html'),
         join(DIST_DIR, 'work', 'mqtt-go', 'index.html'),
         join(DIST_DIR, 'work', 'ctq-extraction', 'index.html'),
       ];
