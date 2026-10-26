@@ -41,7 +41,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
       expect(content).toContain('schema.org');
       expect(content).toContain('Person');
       expect(content).toContain('Eklavya Ghodake');
-      expect(content).toContain('Software R&D Lead');
+      expect(content).toContain('Senior Software Engineer');
       expect(content).toContain('https://github.com/Eklavya-San');
       expect(content).toContain('https://x.com/eghodake');
     });

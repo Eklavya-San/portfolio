@@ -67,7 +67,7 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
 
     const roles = experience.map((e) => e.role);
     expect(roles).toEqual([
-      'Software R&D Lead / Manager',
+      'Software R&D Lead / Senior Software Engineer',
       'SDE II',
       'SDE I',
     ]);
@@ -89,7 +89,7 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
     expect(sde2Text).toContain('0 data loss');
     expect(sde2Text).toContain('WebSockets');
 
-    const rdLead = experience.find((e) => e.role === 'Software R&D Lead / Manager');
+    const rdLead = experience.find((e) => e.role === 'Software R&D Lead / Senior Software Engineer');
     expect(rdLead).toBeDefined();
     const rdText = rdLead?.bullets.join(' ') || '';
     expect(rdText).toContain('99.9%+');
@@ -215,7 +215,7 @@ describe('Task 6: Production Build Output Inspection', () => {
 
     // Experience items rendered
     expect(html).toContain('Yantramedhavi');
-    expect(html).toContain('Software R&amp;D Lead / Manager');
+    expect(html).toContain('Software R&amp;D Lead');
     expect(html).toContain('SDE II');
     expect(html).toContain('SDE I');
     expect(html).toContain('IMTEX Bangalore');

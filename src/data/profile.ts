@@ -11,17 +11,16 @@ export const profileLinks = {
 export const profile: Profile = {
   name: 'Eklavya Ghodake',
   legalName: 'Eklavya Shivaji Ghodake',
-  title: 'TODO(eklavya): choose one — Software R&D Lead or Senior Software Engineer',
+  title: 'Senior Software Engineer | Full-Stack & Distributed Systems',
   location: 'Pune / Maharashtra, India',
-  positioning: 'I build software for the factory floor: real-time telemetry, and AI that reads engineering drawings.',
+  positioning:
+    'Full-Stack Software Engineer building high-throughput distributed systems, real-time event streaming pipelines, and applied AI developer tooling.',
   bio: [
-    'Software R&D Lead specializing in high-throughput industrial telemetry, distributed systems, and real-time factory floor dashboards.',
-    'Builder of open-source agentic developer tools, local RAG architectures, and multimodal AI systems parsing engineering drawings.',
+    'Senior Software Engineer with hands-on expertise building event-driven microservices, real-time streaming architectures, and high-performance web platforms.',
+    'Proven track record slashing cloud database storage by 70%, architecting zero-data-loss disaster recovery, and developing open-source agentic developer tools.',
   ],
   links: profileLinks,
   todos: [
-    "TODO(eklavya): choose one title between 'Software R&D Lead' and 'Senior Software Engineer' for consistent use across site, resume and LinkedIn",
-    'TODO(eklavya): confirm LinkedIn URL from resume',
     'TODO(eklavya): confirm YouTube channel @developer_by_choice is live; otherwise drop the community section',
     'TODO(eklavya): confirm you are comfortable publishing 99.9%+ platform uptime metric',
     'TODO(eklavya): confirm industrial protocol experience (Fanuc FOCAS) beyond driver fork',

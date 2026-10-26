@@ -142,7 +142,7 @@ export function TelemetryHero() {
     <div
       ref={containerRef}
       className="w-full max-w-md rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 shadow-2xl relative overflow-hidden font-sans group hover:border-[var(--border-focus)] transition-all duration-300"
-      aria-label="Simulated Factory Telemetry Widget"
+      aria-label="Real-time Event Streaming Simulation Widget"
     >
       {/* Background industrial grid overlay */}
       <div
@@ -158,10 +158,10 @@ export function TelemetryHero() {
           </div>
           <div>
             <div className="font-mono text-[11px] font-semibold text-[var(--text)] tracking-wider">
-              CNC-04 // CELL-A3
+              INGESTION // CLUSTER-01
             </div>
             <div className="font-mono text-[10px] text-[var(--accent-2)] truncate max-w-[170px] sm:max-w-[210px]">
-              plant/cnc-04/spindle_load
+              telemetry/stream/event_throughput
             </div>
           </div>
         </div>
@@ -300,7 +300,7 @@ export function TelemetryHero() {
       <div className="mt-3 pt-2.5 border-t border-[var(--border-subtle)] flex items-center justify-between text-[10px] font-mono text-[var(--muted-dark)] relative z-10">
         <div className="flex items-center gap-1.5 text-[var(--muted)]">
           <AlertCircle className="w-3 h-3 text-[var(--accent-2)] shrink-0" aria-hidden="true" />
-          <span>Simulated factory telemetry</span>
+          <span>Real-time event streaming simulation</span>
         </div>
         <div className="hidden sm:flex items-center gap-2">
           {lastUpdated !== '00:00:00' && (

@@ -2,16 +2,16 @@ import type { ExperienceItem, TalkItem, EducationItem } from '../types/portfolio
 
 export const experience: ExperienceItem[] = [
   {
-    role: 'Software R&D Lead / Manager',
+    role: 'Software R&D Lead / Senior Software Engineer',
     company: 'Yantramedhavi India Pvt Ltd (formerly Wathare Infotech Solutions / MachineWise)',
     location: 'Pune, India',
     period: 'Sep 2026 – Present',
     bullets: [
-      'Lead software R&D for MachineWise industrial IoT platform, managing telemetry streaming architecture and device integrations.',
-      'Direct engineering teams delivering high-concurrency edge computing services and enterprise ERP integrations.',
-      'Maintained 99.9%+ platform uptime across mission-critical enterprise manufacturing deployments.',
+      'Architect end-to-end event-driven telemetry streaming pipelines and high-concurrency backend microservices for the MachineWise platform.',
+      'Lead technical design reviews and collaborate across engineering teams to establish automated CI/CD workflows and zero production regressions.',
+      'Maintained 99.9%+ platform uptime across distributed enterprise customer deployments.',
     ],
-    tags: ['IoT', 'Architecture', 'Distributed Systems', 'Leadership'],
+    tags: ['Distributed Systems', 'Architecture', 'Event-Driven', 'Microservices', 'Node.js'],
   },
   {
     role: 'SDE II',
