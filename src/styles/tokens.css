@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand colors */
+  --bg: #030712;
+  --surface: #0b0f17;
+  --surface-hover: #111827;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.04);
+  --border-focus: rgba(255, 255, 255, 0.2);
+  --text: #f9fafb;
+  --muted: #9ca3af;
+  --muted-dark: #6b7280;
+
+  /* Accents (Strictly Emerald + Cyan) */
+  --accent: #10b981;
+  --accent-hover: #059669;
+  --accent-muted: rgba(16, 185, 129, 0.15);
+  --accent-2: #06b6d4;
+  --accent-2-hover: #0891b2;
+  --accent-2-muted: rgba(6, 182, 212, 0.15);
+
+  /* Radii (Capsule / Pill ergonomics) */
+  --radius-full: 9999px;
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+
+  /* Fluid Spacing Scale (clamp) */
+  --space-3xs: clamp(0.25rem, 0.2rem + 0.2vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --space-sm: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  --space-md: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+  --space-lg: clamp(2rem, 1.8rem + 1vw, 2.75rem);
+  --space-xl: clamp(3rem, 2.6rem + 2vw, 4.5rem);
+  --space-2xl: clamp(4rem, 3.4rem + 3vw, 6rem);
+
+  /* Fluid Typography Scale (clamp) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 1.15rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.35rem + 0.8vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 1.65rem + 1.2vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 1.95rem + 1.8vw, 3.25rem);
+  --text-5xl: clamp(2.75rem, 2.3rem + 2.5vw, 4.25rem);
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+@theme {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-focus: var(--border-focus);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-2: var(--accent-2);
+  --color-accent-2-hover: var(--accent-2-hover);
+  --color-accent-2-muted: var(--accent-2-muted);
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  --radius-full: 9999px;
+  --radius-lg: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+}
+
+/* Global resets & typography */
+html {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus ring styles */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

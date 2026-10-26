@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import { StatusIndicator } from '../components/StatusIndicator';
+---
+
+<Base>
+  <main class="min-h-screen flex flex-col justify-between p-6 sm:p-12 max-w-5xl mx-auto">
+    <header class="flex items-center justify-between py-4">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true"></span>
+        <span class="font-mono text-xs tracking-wider uppercase text-[var(--muted)]">claudya.in</span>
+      </div>
+      <a
+        href="/Eklavya_Ghodake_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-200"
+      >
+        <span>Résumé</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+      </a>
+    </header>
+
+    <section class="my-auto py-16 space-y-6">
+      <div class="flex items-center gap-3">
+        <StatusIndicator client:idle />
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]">
+          <span class="text-[var(--accent-2)]">&gt;</span> Systems &amp; Applied AI
+        </div>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-[var(--text)]">
+        Eklavya Ghodake
+      </h1>
+
+      <p class="text-lg sm:text-xl text-[var(--muted)] max-w-2xl leading-relaxed">
+        I build software for the factory floor: real-time telemetry, distributed systems, and AI that reads engineering drawings.
+      </p>
+
+      <div class="pt-4 flex flex-wrap gap-3">
+        <a
+          href="https://github.com/Eklavya-San"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] hover:border-[var(--accent-2)] transition-colors duration-200"
+        >
+          <span>GitHub</span>
+          <span class="text-[var(--muted)] font-mono text-xs">@Eklavya-San</span>
+        </a>
+        <a
+          href="/Eklavya_Ghodake_Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-[var(--accent)] text-black font-semibold hover:bg-[var(--accent-hover)] transition-colors duration-200"
+        >
+          <span>View Résumé</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="py-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--muted)]">
+      <div>© 2026 Eklavya Ghodake</div>
+      <div class="text-[var(--muted-dark)]">Obsidian Capsule System • Pune, India</div>
+    </footer>
+  </main>
+</Base>
