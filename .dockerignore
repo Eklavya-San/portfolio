@@ -1,0 +1,12 @@
+node_modules
+dist
+.git
+.github
+.astro
+artifacts
+playwright-report
+test-results
+test
+e2e
+*.log
+.DS_Store

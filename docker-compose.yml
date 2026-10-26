@@ -1,0 +1,25 @@
+services:
+  portfolio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: claudya-portfolio
+    restart: unless-stopped
+    ports:
+      # Exposes port 8080 on the VPS host for Nginx Proxy Manager
+      # Change 8080 if you have another service on that port
+      - "${PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+# Optional: If your Nginx Proxy Manager is running in a Docker network (e.g. 'npm_default' or 'proxy-network'),
+# uncomment below to allow NPM to route directly to http://claudya-portfolio:80 without exposing host ports:
+#
+# networks:
+#   default:
+#     external: true
+#     name: npm_network
