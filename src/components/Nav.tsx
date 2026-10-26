@@ -8,8 +8,9 @@ interface NavProps {
 
 const NAV_LINKS = [
   { id: 'work', label: 'Work', href: '/#work' },
-  { id: 'workshop', label: 'Workshop', href: '/#workshop' },
+  { id: 'profile', label: 'Profile', href: '/#profile' },
   { id: 'experience', label: 'Experience', href: '/#experience' },
+  { id: 'workshop', label: 'Workshop', href: '/#workshop' },
   { id: 'skills', label: 'Skills', href: '/#skills' },
 ] as const;
 
@@ -27,7 +28,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
       setIsScrolled(window.scrollY > 30);
 
       // Scrollspy calculation
-      const sectionIds = ['work', 'workshop', 'experience', 'skills', 'contact'];
+      const sectionIds = ['work', 'profile', 'experience', 'workshop', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       // Check sections from bottom up

@@ -12,6 +12,21 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
   const badgeLabel = isEnterprise ? 'Enterprise Case Study' : 'Open Source';
   const shouldReduceMotion = useReducedMotion();
 
+  // Technical metadata glyphs & class definitions
+  const glyph = flagship.slug === 'mqtt-go' ? '⌖' : flagship.slug === 'machinewise' ? '⏥' : '◈';
+  const techClass =
+    flagship.slug === 'mqtt-go'
+      ? 'Desktop Tooling (<100MB)'
+      : flagship.slug === 'machinewise'
+      ? 'Distributed IoT Ingestion'
+      : 'Multimodal Vision Skill';
+  const techStatus =
+    flagship.slug === 'mqtt-go'
+      ? 'OPERATIONAL'
+      : flagship.slug === 'machinewise'
+      ? 'PRODUCTION SLA'
+      : 'VERIFIED 14 GD&T';
+
   return (
     <motion.div
       id={`flagship-card-${flagship.slug}`}
@@ -21,8 +36,16 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
           ? { duration: 0 }
           : { type: 'spring', stiffness: 350, damping: 30 }
       }
-      className="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-7 flex flex-col justify-between hover:border-[var(--accent)]/50 hover:bg-[var(--surface-hover)] transition-colors duration-300 shadow-xl relative overflow-hidden"
+      className="brk group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-7 flex flex-col justify-between hover:border-[var(--accent)]/50 hover:bg-[var(--surface-hover)] transition-all duration-300 shadow-xl relative overflow-hidden"
     >
+      {/* Background Technical Glyph Watermark */}
+      <span
+        className="absolute -right-2 -bottom-6 text-7xl font-mono text-[var(--accent)]/5 dark:text-[var(--accent)]/10 select-none pointer-events-none group-hover:scale-110 transition-transform duration-500"
+        aria-hidden="true"
+      >
+        {glyph}
+      </span>
+
       {/* Subtle Accent Glow Corner */}
       <div
         className={`absolute -top-12 -right-12 w-32 h-32 rounded-full blur-3xl pointer-events-none opacity-20 group-hover:opacity-40 transition-opacity ${
@@ -30,8 +53,8 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
         }`}
       />
 
-      <div className="space-y-4">
-        {/* Header Badge */}
+      <div className="space-y-4 relative z-10">
+        {/* Header Badge & Index */}
         <div className="flex items-center justify-between">
           <span
             className={`px-3 py-1 rounded-full text-xs font-mono font-medium border ${
@@ -42,15 +65,20 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
           >
             {badgeLabel}
           </span>
-          <span className="text-[11px] font-mono text-[var(--muted-dark)]">
+          <span className="text-[11px] font-mono text-[var(--muted)] font-medium">
             // 0{flagship.slug === 'mqtt-go' ? '1' : flagship.slug === 'ctq-extraction' ? '2' : '3'}
           </span>
         </div>
 
-        {/* Title */}
-        <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-          {flagship.title}
-        </h3>
+        {/* Title & Technical Class */}
+        <div className="space-y-1">
+          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+            {flagship.title}
+          </h3>
+          <div className="text-[11px] font-mono tracking-wider text-[var(--accent-2)] uppercase">
+            {techClass}
+          </div>
+        </div>
 
         {/* Tagline */}
         <p className="text-xs sm:text-sm text-[var(--muted)] leading-relaxed line-clamp-3">
@@ -73,9 +101,16 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
             </div>
           ))}
         </div>
+
+        {/* Technical Status Tag */}
+        <div className="flex items-center gap-2 pt-1 font-mono text-[10px] text-[var(--muted)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+          <span>STATUS:</span>
+          <span className="text-[var(--accent)] font-semibold">{techStatus}</span>
+        </div>
       </div>
 
-      <div className="mt-6 space-y-4 pt-4 border-t border-white/5">
+      <div className="mt-6 space-y-4 pt-4 border-t border-white/5 relative z-10">
         {/* Stack Pills */}
         <div className="flex flex-wrap gap-1.5">
           {flagship.stack.slice(0, 4).map((tech) => (
@@ -87,7 +122,7 @@ export function FlagshipCard({ flagship, onOpenOverlay }: FlagshipCardProps) {
             </span>
           ))}
           {flagship.stack.length > 4 && (
-            <span className="text-[10px] font-mono px-1.5 py-0.5 text-[var(--muted-dark)]">
+            <span className="text-[10px] font-mono px-1.5 py-0.5 text-[var(--muted)]">
               +{flagship.stack.length - 4}
             </span>
           )}

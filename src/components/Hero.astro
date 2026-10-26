@@ -1,6 +1,7 @@
 ---
 import { profile } from '../data/profile';
 import { TelemetryHero } from './TelemetryHero';
+import { TextScramble } from './TextScramble';
 
 const linkedinUrl = profile.links.linkedin.startsWith('http')
   ? profile.links.linkedin
@@ -23,13 +24,13 @@ const linkedinUrl = profile.links.linkedin.startsWith('http')
         </div>
       </div>
 
-      {/* Primary <h1> Name */}
+      {/* Primary <h1> Name with Cyber-Industrial Text Scramble */}
       <div class="space-y-2">
         <h1
           id="hero-heading"
           class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text)] leading-[1.1]"
         >
-          {profile.name}
+          <TextScramble client:load text={profile.name} as="span" hoverTrigger={true} />
         </h1>
         <p class="text-xl sm:text-2xl font-medium text-[var(--text)] leading-snug max-w-xl">
           {profile.positioning}

@@ -141,43 +141,57 @@ export function Experience() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {talks.map((talk, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 space-y-3 relative group hover:border-[var(--border-focus)] transition-colors"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div className="space-y-1">
-                    <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-[var(--accent-2-muted)] text-[var(--accent-2)] border border-[var(--accent-2)]/30">
-                      {talk.event}
-                    </span>
-                    <h4 className="text-sm font-bold text-[var(--text)] group-hover:text-white transition-colors">
-                      {talk.title}
-                    </h4>
+            {talks.map((talk, idx) => {
+              const stampText = talk.event.includes('IMTEX')
+                ? 'LIVE\nDEMO\n⌖'
+                : 'DEFENCE\nSECTOR\n⏥';
+
+              return (
+                <div
+                  key={idx}
+                  className="brk rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6 space-y-3 relative group hover:border-[var(--accent)]/50 transition-all duration-300 overflow-hidden"
+                >
+                  {/* Rotating Technical Stamp */}
+                  <div
+                    className="stamp absolute right-3 top-3 hidden sm:grid"
+                    aria-hidden="true"
+                  >
+                    <span className="whitespace-pre-line leading-tight">{stampText}</span>
                   </div>
-                  <span className="text-xs font-mono text-[var(--muted-dark)] shrink-0 px-2 py-0.5 rounded bg-black/40 border border-white/5">
-                    {talk.year}
-                  </span>
-                </div>
 
-                <p className="text-xs text-[var(--muted)] leading-relaxed">
-                  {talk.description}
-                </p>
-
-                {talk.tags && talk.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {talk.tags.map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-black/40 border border-white/5 text-[var(--muted)]"
-                      >
-                        {tag}
+                  <div className="flex items-start justify-between gap-3 pr-0 sm:pr-16">
+                    <div className="space-y-1">
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-[var(--accent-2-muted)] text-[var(--accent-2)] border border-[var(--accent-2)]/30 font-medium">
+                        {talk.event}
                       </span>
-                    ))}
+                      <h4 className="text-sm font-bold text-[var(--text)] group-hover:text-white transition-colors">
+                        {talk.title}
+                      </h4>
+                    </div>
+                    <span className="text-xs font-mono text-[var(--muted-dark)] shrink-0 px-2 py-0.5 rounded bg-black/40 border border-white/5 sm:hidden">
+                      {talk.year}
+                    </span>
                   </div>
-                )}
-              </div>
-            ))}
+
+                  <p className="text-xs text-[var(--muted)] leading-relaxed">
+                    {talk.description}
+                  </p>
+
+                  {talk.tags && talk.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {talk.tags.map((tag, tIdx) => (
+                        <span
+                          key={tIdx}
+                          className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-black/40 border border-white/5 text-[var(--muted)]"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
