@@ -1,70 +1,193 @@
 ---
 import Base from '../layouts/Base.astro';
-import { StatusIndicator } from '../components/StatusIndicator';
+import { Nav } from '../components/Nav';
+import { CommandPalette } from '../components/CommandPalette';
+import Hero from '../components/Hero.astro';
+import ProofStrip from '../components/ProofStrip.astro';
+import { flagships } from '../data/flagships';
+import { experience } from '../data/experience';
+import { skills } from '../data/skills';
+import { profile } from '../data/profile';
 ---
 
 <Base>
-  <main class="min-h-screen flex flex-col justify-between p-6 sm:p-12 max-w-5xl mx-auto">
-    <header class="flex items-center justify-between py-4">
-      <div class="flex items-center gap-2">
-        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-pulse" aria-hidden="true"></span>
-        <span class="font-mono text-xs tracking-wider uppercase text-[var(--muted)]">claudya.in</span>
-      </div>
-      <a
-        href="/Eklavya_Ghodake_Resume.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors duration-200"
-      >
-        <span>Résumé</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-          <polyline points="15 3 21 3 21 9"></polyline>
-          <line x1="10" y1="14" x2="21" y2="3"></line>
-        </svg>
-      </a>
-    </header>
+  <Nav client:load />
+  <CommandPalette client:idle />
 
-    <section class="my-auto py-16 space-y-6">
-      <div class="flex items-center gap-3">
-        <StatusIndicator client:idle />
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]">
-          <span class="text-[var(--accent-2)]">&gt;</span> Systems &amp; Applied AI
+  <main class="min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-24 flex flex-col gap-12 sm:gap-16">
+    {/* Hero Section with Live Telemetry */}
+    <Hero />
+
+    {/* Verified Engineering Proof Strip */}
+    <ProofStrip />
+
+    {/* Section 1: Flagship Work & Case Studies */}
+    <section id="work" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] mb-3">
+            <span>// 01</span>
+            <span>FLAGSHIP CASE STUDIES</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
+            Industrial Systems &amp; Applied AI
+          </h2>
+          <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
+            Mission-critical factory telemetry, high-concurrency protocols, and generative AI parsing engineering CAD.
+          </p>
         </div>
       </div>
 
-      <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-[var(--text)]">
-        Eklavya Ghodake
-      </h1>
-
-      <p class="text-lg sm:text-xl text-[var(--muted)] max-w-2xl leading-relaxed">
-        I build software for the factory floor: real-time telemetry, distributed systems, and AI that reads engineering drawings.
-      </p>
-
-      <div class="pt-4 flex flex-wrap gap-3">
-        <a
-          href="https://github.com/Eklavya-San"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-[var(--surface)] border border-[var(--border)] text-[var(--text)] hover:border-[var(--accent-2)] transition-colors duration-200"
-        >
-          <span>GitHub</span>
-          <span class="text-[var(--muted)] font-mono text-xs">@Eklavya-San</span>
-        </a>
-        <a
-          href="/Eklavya_Ghodake_Resume.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium bg-[var(--accent)] text-black font-semibold hover:bg-[var(--accent-hover)] transition-colors duration-200"
-        >
-          <span>View Résumé</span>
-        </a>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {flagships.map((project) => (
+          <div class="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 flex flex-col justify-between hover:border-[var(--accent)]/40 transition-all duration-200">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between text-xs font-mono">
+                <span class="px-2.5 py-0.5 rounded-full border border-white/10 bg-black/40 text-[var(--accent-2)]">
+                  {project.badge}
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+                {project.title}
+              </h3>
+              <p class="text-xs text-[var(--muted)] leading-relaxed">
+                {project.tagline}
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-1.5">
+              {project.stack.slice(0, 3).map((tech) => (
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/30 border border-white/5 text-[var(--muted)]">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
-    <footer class="py-6 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--muted)]">
-      <div>© 2026 Eklavya Ghodake</div>
-      <div class="text-[var(--muted-dark)]">Obsidian Capsule System • Pune, India</div>
+    {/* Section 2: Experience & Leadership */}
+    <section id="experience" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent-2)] mb-3">
+          <span>// 02</span>
+          <span>CAREER HISTORY</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
+          Engineering Leadership
+        </h2>
+        <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
+          Architecting distributed edge daemons, zero-loss recovery pipelines, and enterprise IoT platforms.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {experience.map((exp) => (
+          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-sm font-mono">
+              <span class="font-bold text-[var(--text)]">{exp.role}</span>
+              <span class="text-xs text-[var(--accent)]">{exp.period}</span>
+            </div>
+            <div class="text-xs font-mono text-[var(--muted)]">{exp.company}</div>
+            <ul class="space-y-1.5 pt-1 text-xs sm:text-sm text-[var(--muted)] list-disc list-inside">
+              {exp.bullets.map((bullet) => (
+                <li class="leading-relaxed">{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Section 3: Technical Skills & Protocols */}
+    <section id="skills" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] mb-3">
+          <span>// 03</span>
+          <span>TECHNICAL ARSENAL</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
+          Systems &amp; Stack
+        </h2>
+        <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
+          Core competencies across languages, real-time telemetry protocols, and automated drawing extraction.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {skills.map((group) => (
+          <div class="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-5 space-y-3">
+            <h3 class="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--accent)]">
+              {group.title}
+            </h3>
+            <div class="flex flex-wrap gap-1.5">
+              {group.skills.map((item) => (
+                <span
+                  class={`text-xs px-2.5 py-1 rounded-full font-mono ${
+                    item.highlight
+                      ? 'bg-[var(--accent-muted)] border border-[var(--accent)]/40 text-[var(--accent)] font-medium'
+                      : 'bg-black/30 border border-white/5 text-[var(--muted)]'
+                  }`}
+                >
+                  {item.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Section 4: Contact & Engagement */}
+    <section id="contact" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+      <div class="rounded-3xl border border-[var(--border)] bg-[var(--surface)]/90 p-8 sm:p-12 text-center max-w-2xl mx-auto space-y-6 shadow-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)]">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse"></span>
+          <span>INITIATE CONTACT</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[var(--text)]">
+          Let's talk industrial software
+        </h2>
+
+        <p class="text-sm sm:text-base text-[var(--muted)] leading-relaxed">
+          Open to technical leadership conversations, telemetry architecture advisory, and applied AI systems.
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={profile.links.email}
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-[var(--accent)] text-black hover:bg-[var(--accent-hover)] transition-colors shadow-md"
+          >
+            <span>eklavyaghodake@gmail.com</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a
+            href="/Eklavya_Ghodake_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--accent)] hover:text-white transition-colors"
+          >
+            <span>Download Résumé</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Footer */}
+    <footer class="pt-12 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--muted)]">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
+        <span class="text-[var(--text)] font-semibold">claudya.in</span>
+        <span class="text-[var(--muted-dark)]">•</span>
+        <span>© 2026 Eklavya Ghodake</span>
+      </div>
+      <div class="text-[var(--muted-dark)] text-center sm:text-right">
+        Obsidian Capsule System • Pune, India
+      </div>
     </footer>
   </main>
 </Base>

@@ -1,0 +1,118 @@
+---
+import { metrics } from '../data/metrics';
+
+interface ParsedMetricConfig {
+  target: number;
+  prefix: string;
+  suffix: string;
+  decimals: number;
+}
+
+function parseMetric(val: string): ParsedMetricConfig {
+  if (val === '70%') {
+    return { target: 70, prefix: '', suffix: '%', decimals: 0 };
+  }
+  if (val === '0') {
+    return { target: 0, prefix: '', suffix: '', decimals: 0 };
+  }
+  if (val === '< 100 MB') {
+    return { target: 100, prefix: '< ', suffix: ' MB', decimals: 0 };
+  }
+  if (val === '99.9%+') {
+    return { target: 99.9, prefix: '', suffix: '%+', decimals: 1 };
+  }
+  return { target: parseFloat(val) || 0, prefix: '', suffix: '', decimals: 0 };
+}
+---
+
+<section class="w-full my-6 sm:my-8" aria-label="Key Engineering Proof Metrics">
+  <div class="rounded-3xl border border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-xs p-5 sm:p-6 lg:p-8 shadow-xl shadow-black/40">
+    <div class="flex items-center gap-2 mb-6">
+      <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+      <h2 class="text-xs font-mono uppercase tracking-wider text-[var(--muted)]">
+        Verified Production &amp; Architecture Benchmarks
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      {metrics.map((metric) => {
+        const config = parseMetric(metric.value);
+        return (
+          <div
+            class="group rounded-2xl p-5 border border-white/5 bg-black/25 hover:border-[var(--accent)]/30 hover:bg-black/40 transition-all duration-200 flex flex-col justify-between"
+          >
+            <div>
+              <div
+                class="metric-value-animate text-3xl sm:text-4xl font-mono font-bold text-[var(--accent)] tracking-tight"
+                data-target={config.target}
+                data-prefix={config.prefix}
+                data-suffix={config.suffix}
+                data-decimals={config.decimals}
+              >
+                {metric.value}
+              </div>
+              <p class="text-xs sm:text-sm text-[var(--muted)] leading-relaxed mt-2.5">
+                {metric.label}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-[var(--muted-dark)]">
+              <span class="truncate max-w-[180px]">{metric.source}</span>
+              <span class="text-[var(--accent)] opacity-60 group-hover:opacity-100 transition-opacity">✓</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = parseFloat(el.getAttribute('data-target') || '0');
+              const prefix = el.getAttribute('data-prefix') || '';
+              const suffix = el.getAttribute('data-suffix') || '';
+              const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+
+              if (target === 0) {
+                observer.unobserve(el);
+                return;
+              }
+
+              let startTime: number | null = null;
+              const duration = 1200;
+
+              const step = (timestamp: number) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                // Cubic ease-out
+                const ease = 1 - Math.pow(1 - progress, 3);
+                const current = (ease * target).toFixed(decimals);
+                el.textContent = `${prefix}${current}${suffix}`;
+
+                if (progress < 1) {
+                  requestAnimationFrame(step);
+                } else {
+                  el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+                }
+              };
+
+              requestAnimationFrame(step);
+              observer.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      document.querySelectorAll('.metric-value-animate').forEach((el) => observer.observe(el));
+    }
+  }
+</script>
