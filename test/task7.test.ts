@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { execSync } from 'node:child_process';
 
 const rootDir = resolve(__dirname, '..');
 
@@ -75,12 +74,12 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
         const imgPath = resolve(rootDir, 'public/og', img);
         expect(existsSync(imgPath), `Missing OG image: ${img}`).toBe(true);
 
-        // Verify dimensions via sips on macOS
-        const sipsOutput = execSync(`sips -g pixelWidth -g pixelHeight "${imgPath}"`, {
-          encoding: 'utf-8',
-        });
-        expect(sipsOutput).toContain('pixelWidth: 1200');
-        expect(sipsOutput).toContain('pixelHeight: 630');
+        // Verify dimensions via standard PNG IHDR chunk header (bytes 16-24)
+        const buf = readFileSync(imgPath);
+        const width = buf.readUInt32BE(16);
+        const height = buf.readUInt32BE(20);
+        expect(width).toBe(1200);
+        expect(height).toBe(630);
       }
     });
 
