@@ -1,0 +1,71 @@
+name: CI & Quality Gates
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Build, Lint, Test & E2E Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies cleanly
+        run: npm ci
+
+      - name: Astro & TypeScript Typecheck
+        run: npm run check
+
+      - name: Compile Production Static Site
+        run: npm run build
+        env:
+          ASTRO_TELEMETRY_DISABLED: 1
+
+      - name: Run Vitest Unit & Component Test Suite
+        run: npm test
+
+      - name: Verify Zero TODO Markers in Production Build
+        run: npm run check:todos
+
+      - name: Verify Links & Ensure Zero Private Repo Leaks
+        run: npm run check:links
+
+      - name: Cache Playwright Browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Install Playwright Chromium with OS Dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright E2E & Axe Accessibility Audit
+        run: npm run test:e2e
+
+      - name: Upload Test Artifacts on Failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-and-screenshots
+          path: |
+            test-results/
+            artifacts/screenshots/
+          retention-days: 7
