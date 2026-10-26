@@ -12,8 +12,10 @@ import {
   ExternalLink,
   X,
   Command,
+  Sun,
 } from 'lucide-react';
 import { profileLinks } from '../data/profile';
+import { toggleTheme } from '../lib/theme';
 
 interface CommandItem {
   id: string;
@@ -110,6 +112,17 @@ export function CommandPalette() {
         icon: <FileText className="w-4 h-4 text-[var(--text)]" />,
         action: () => {
           window.open('/Eklavya_Ghodake_Resume.pdf', '_blank', 'noopener,noreferrer');
+        },
+      },
+      {
+        id: 'action-theme',
+        title: 'Toggle Theme (Light / Dark Mode)',
+        category: 'Actions',
+        description: 'Switch between Obsidian Dark and Architectural Slate Light mode',
+        keywords: ['theme', 'dark', 'light', 'mode', 'color', 'toggle', 'sun', 'moon'],
+        icon: <Sun className="w-4 h-4 text-amber-400" />,
+        action: () => {
+          toggleTheme();
         },
       },
       {

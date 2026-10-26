@@ -233,4 +233,33 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
       });
     }
   });
+
+  /* ==========================================================================
+     Test I: Theme toggle switch
+     ========================================================================== */
+  test('I: Theme toggle: toggles light/dark mode and updates html class & localStorage', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    await page.waitForLoadState('networkidle');
+
+    // Default is dark mode
+    await expect(page.locator('html')).toHaveClass(/dark/);
+
+    // Click theme toggle button
+    const toggleBtn = page.getByRole('button', { name: /Switch to Light Mode/i }).first();
+    await toggleBtn.click();
+
+    // Now html must have class 'light'
+    await expect(page.locator('html')).toHaveClass(/light/);
+
+    // Check localStorage
+    const storedTheme = await page.evaluate(() => localStorage.getItem('theme'));
+    expect(storedTheme).toBe('light');
+
+    // Click again to toggle back to dark mode
+    const darkToggleBtn = page.getByRole('button', { name: /Switch to Dark Mode/i }).first();
+    await darkToggleBtn.click();
+    await expect(page.locator('html')).toHaveClass(/dark/);
+  });
 });

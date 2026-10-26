@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Search, FileText, ArrowRight } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 interface NavProps {
   resumeUrl?: string;
@@ -120,6 +121,9 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
             </kbd>
           </button>
 
+          {/* Theme Toggle (Light / Dark Mode Switch) */}
+          <ThemeToggle />
+
           {/* Résumé Link */}
           <a
             href={resumeUrl}
@@ -174,6 +178,9 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
         >
           <Search className="w-4 h-4" aria-hidden="true" />
         </button>
+
+        {/* Theme Toggle on mobile */}
+        <ThemeToggle className="min-h-[44px] min-w-[44px] border-none bg-transparent hover:bg-white/5" />
 
         {/* Résumé button on mobile with accessible text */}
         <a

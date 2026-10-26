@@ -79,6 +79,25 @@ const jsonLd = schema || defaultSchema;
     <meta name="theme-color" content="#030712" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
+    <!-- Blocking Theme Initializer (Eliminates FOUC) -->
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = stored ? stored : (prefersDark ? 'dark' : 'dark');
+          const root = document.documentElement;
+          if (theme === 'light') {
+            root.classList.add('light');
+            root.classList.remove('dark');
+          } else {
+            root.classList.add('dark');
+            root.classList.remove('light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
