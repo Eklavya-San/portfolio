@@ -1,0 +1,18 @@
+# Global security headers for all routes
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Immutable caching for hashed Astro build bundles
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# OpenGraph assets caching
+/og/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# PDF resume
+/Eklavya_Ghodake_Resume.pdf
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400

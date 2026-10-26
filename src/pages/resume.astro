@@ -1,0 +1,40 @@
+---
+// src/pages/resume.astro
+// Static redirect page pointing to Eklavya Ghodake's verified PDF resume
+const destination = '/Eklavya_Ghodake_Resume.pdf';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting to Resume | Eklavya Ghodake</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={`https://claudya.in${destination}`} />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <script is:inline define:vars={{ destination }}>
+      window.location.replace(destination);
+    </script>
+  </head>
+  <body class="bg-[#030712] text-[#f9fafb] font-mono min-h-screen flex items-center justify-center p-6">
+    <div class="max-w-md w-full p-6 rounded-2xl border border-[rgba(255,255,255,0.08)] bg-[#111827]/60 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs border border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>REDIRECTING</span>
+      </div>
+      <h1 class="text-lg font-bold text-white">Opening Resume</h1>
+      <p class="text-sm text-gray-400">
+        You are being redirected to Eklavya Ghodake's resume (PDF).
+      </p>
+      <div class="pt-2">
+        <a
+          href={destination}
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-emerald-500 text-black hover:bg-emerald-400 transition-colors"
+        >
+          Click here if not redirected
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
