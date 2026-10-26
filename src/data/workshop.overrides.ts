@@ -13,9 +13,17 @@ export const workshopOverrides: WorkshopCard[] = [
     repo: 'dsh-agent-mcp',
     title: 'dsh-agent-mcp',
     tagline: 'MCP server connecting Antigravity, Claude and Cursor to DeepSeek Harness for $0-cost autonomous coding and dual-agent verification',
-    tags: ['MCP', 'AI Agents', 'Developer Tools'],
+    tags: ['AI Agents', 'Developer Tools'],
     stack: ['TypeScript', 'Python', 'MCP', 'Docker'],
     description: 'Open-source MCP server running isolated dual-agent coding tasks against local and free LLM backends with zero token cost.',
+  },
+  {
+    repo: 'document_rag',
+    title: 'Document RAG',
+    tagline: 'On-premises RAG engine with local LLM inference, zero cloud data egress, and source-grounded citation',
+    tags: ['Applied AI', 'Local LLMs', 'RAG'],
+    stack: ['Python', 'FastAPI', 'Ollama'],
+    description: 'On-premises Retrieval-Augmented Generation engine running local LLM inference with zero cloud data egress and grounded technical manual search.',
   },
   {
     repo: 'ai-vision-annotator',
@@ -36,7 +44,7 @@ export const workshopOverrides: WorkshopCard[] = [
   {
     repo: 'mqtt-queue',
     title: 'mqtt-queue',
-    tagline: 'Queuing and logging MQTT topic messages for edge telemetry',
+    tagline: 'Queuing and logging MQTT topic messages',
     tags: ['IoT', 'Networking', 'Developer Tools'],
     stack: ['JavaScript', 'Node.js', 'MQTT'],
     description: 'Lightweight queuing and logging utility for MQTT topic messages in edge computing environments.',

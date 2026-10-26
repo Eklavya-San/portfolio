@@ -61,8 +61,8 @@ export function CommandPalette() {
         id: 'nav-work',
         title: 'Work & Flagships',
         category: 'Navigation',
-        description: 'MQTT-GO, CTQ Extraction, and Document RAG',
-        keywords: ['flagship', 'projects', 'cases', 'mqttgo', 'ctq', 'rag'],
+        description: 'MachineWise, MQTT-GO, and CTQ-Extraction',
+        keywords: ['flagship', 'projects', 'cases', 'machinewise', 'mqttgo', 'ctq'],
         icon: <Layers className="w-4 h-4 text-[var(--accent)]" />,
         action: () => {
           window.location.hash = '#work';

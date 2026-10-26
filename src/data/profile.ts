@@ -11,13 +11,13 @@ export const profileLinks = {
 export const profile: Profile = {
   name: 'Eklavya Ghodake',
   legalName: 'Eklavya Shivaji Ghodake',
-  title: 'Manager – Software R&D | Full-Stack, Distributed Systems & Applied AI',
+  title: 'Software R&D Lead / Manager | Full-Stack & Distributed Systems',
   location: 'Pune / Maharashtra, India',
   positioning:
-    'Manager – Software R&D building high-throughput distributed systems, real-time event streaming pipelines, and applied AI developer tooling.',
+    'I build software for the factory floor: real-time telemetry, distributed streaming pipelines, and AI that reads engineering drawings.',
   bio: [
-    'Manager – Software R&D with hands-on expertise building event-driven microservices, real-time streaming architectures, and applied AI platforms.',
-    'Proven track record slashing cloud database storage by 70%, architecting zero-data-loss disaster recovery, and developing open-source agentic developer tools.',
+    'Software R&D Lead / Manager at Yantramedhavi India, architecting event-driven telemetry microservices, zero-loss disaster recovery, and edge services for industrial manufacturing.',
+    'Creator of open-source developer tools including MQTT-GO (concurrent Go client) and CTQ-Extraction (AI drawing extraction skill).',
   ],
   links: profileLinks,
   todos: [

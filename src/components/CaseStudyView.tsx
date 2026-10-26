@@ -154,11 +154,11 @@ export function CaseStudyView({
         {flagship.caseStudy.architectureKey === 'document-rag' && <DocumentRagDiagram />}
       </section>
 
-      {/* Section 4: Verified Results & Production Metrics */}
+      {/* Section 4: Key Architecture & Capabilities */}
       <section className="rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8 space-y-5">
         <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-[var(--accent)]">
           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-          <span>Measured Results &amp; Verified Outcomes</span>
+          <span>Key Architecture &amp; Capabilities</span>
         </div>
 
         <ul className="space-y-3.5">

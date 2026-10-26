@@ -41,7 +41,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
       expect(content).toContain('schema.org');
       expect(content).toContain('Person');
       expect(content).toContain('Eklavya Ghodake');
-      expect(content).toContain('Manager – Software R&D');
+      expect(content).toContain('Software R&D Lead / Manager');
       expect(content).toContain('https://github.com/Eklavya-San');
       expect(content).toContain('https://x.com/eghodake');
     });
@@ -110,7 +110,7 @@ describe('Task 7: SEO, Assets, and Hosting', () => {
       const sitemapSrc = resolve(rootDir, 'src/pages/sitemap.xml.ts');
       expect(existsSync(sitemapSrc)).toBe(true);
       const content = readFileSync(sitemapSrc, 'utf-8');
-      expect(content).toContain('work/document-rag');
+      expect(content).toContain('work/machinewise');
       expect(content).toContain('work/mqtt-go');
       expect(content).toContain('work/ctq-extraction');
       expect(content).toContain('resume');

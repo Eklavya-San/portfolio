@@ -8,7 +8,7 @@ describe('Flagship Case Studies and Static Paths', () => {
 
     expect(paths).toHaveLength(3);
     const slugs = paths.map((p) => p.params.slug);
-    expect(slugs).toEqual(['mqtt-go', 'ctq-extraction', 'document-rag']);
+    expect(slugs).toEqual(['machinewise', 'mqtt-go', 'ctq-extraction']);
 
     paths.forEach((p) => {
       expect(p.props.flagship).toBeDefined();
@@ -16,18 +16,27 @@ describe('Flagship Case Studies and Static Paths', () => {
     });
   });
 
-  it('validates all flagships are independently owned open source with public repo links', () => {
-    // Invariant: MachineWise is NOT a public project showcase card (belongs in experience)
-    expect(flagships.find((f) => f.slug === 'machinewise')).toBeUndefined();
+  it('validates flagship case study presentation boundaries and ownership', () => {
+    // MachineWise is an Enterprise Production Case study with no public repo link
+    const mw = flagships.find((f) => f.slug === 'machinewise');
+    expect(mw).toBeDefined();
+    expect(mw?.badge).toBe('Enterprise Production Case Study');
+    expect(mw?.repoUrl).toBeUndefined();
 
-    for (const project of flagships) {
+    // Open-source flagships have public repo links
+    const ossFlagships = flagships.filter((f) => f.slug !== 'machinewise');
+    for (const project of ossFlagships) {
       expect(project.badge).toBe('Open Source');
       expect(project.repoUrl).toBeDefined();
       expect(project.repoUrl).toMatch(/^https:\/\/github\.com\/Eklavya-San\//);
     }
   });
 
-  it('validates open source flagship repository links and architecture keys', () => {
+  it('validates flagship repository links and architecture keys', () => {
+    const mw = flagships.find((f) => f.slug === 'machinewise');
+    expect(mw).toBeDefined();
+    expect(mw?.caseStudy.architectureKey).toBe('machinewise');
+
     const mqttGo = flagships.find((f) => f.slug === 'mqtt-go');
     expect(mqttGo).toBeDefined();
     expect(mqttGo?.badge).toBe('Open Source');
@@ -39,12 +48,6 @@ describe('Flagship Case Studies and Static Paths', () => {
     expect(ctq?.badge).toBe('Open Source');
     expect(ctq?.repoUrl).toBe('https://github.com/Eklavya-San/CTQ-extraction');
     expect(ctq?.caseStudy.architectureKey).toBe('ctq-extraction');
-
-    const docRag = flagships.find((f) => f.slug === 'document-rag');
-    expect(docRag).toBeDefined();
-    expect(docRag?.badge).toBe('Open Source');
-    expect(docRag?.repoUrl).toBe('https://github.com/Eklavya-San/document_rag');
-    expect(docRag?.caseStudy.architectureKey).toBe('document-rag');
   });
 
   it('ensures each case study contains Problem, Decision, Architecture, and Results', () => {
@@ -57,7 +60,7 @@ describe('Flagship Case Studies and Static Paths', () => {
       const cs = project.caseStudy;
       expect(cs.problem.length).toBeGreaterThan(20);
       expect(cs.decision.length).toBeGreaterThan(20);
-      expect(['document-rag', 'mqtt-go', 'ctq-extraction']).toContain(cs.architectureKey);
+      expect(['machinewise', 'mqtt-go', 'ctq-extraction']).toContain(cs.architectureKey);
       expect(cs.results.length).toBeGreaterThanOrEqual(2);
 
       for (const res of cs.results) {
@@ -68,10 +71,10 @@ describe('Flagship Case Studies and Static Paths', () => {
 
   it('verifies route matching logic and isolates section anchors', () => {
     // Valid flagship routes
+    expect(matchWorkRoute('/work/machinewise')?.title).toBe('MachineWise');
+    expect(matchWorkRoute('/work/machinewise/')?.title).toBe('MachineWise');
     expect(matchWorkRoute('/work/mqtt-go')?.title).toBe('MQTT-GO');
     expect(matchWorkRoute('/work/ctq-extraction')?.title).toBe('CTQ-Extraction');
-    expect(matchWorkRoute('/work/document-rag')?.title).toBe('Document RAG');
-    expect(matchWorkRoute('/work/document-rag/')?.title).toBe('Document RAG');
 
     // Section anchors MUST NOT be treated as /work/ routes
     expect(matchWorkRoute('#work')).toBeNull();

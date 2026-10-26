@@ -66,34 +66,34 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
 
     const roles = experience.map((e) => e.role);
     expect(roles).toEqual([
-      'Manager – Software R&D',
-      'SDE II',
-      'SDE I',
+      'Software R&D Lead / Manager',
+      'Software Development Engineer II (SDE 2)',
+      'Software Development Engineer I (SDE 1)',
     ]);
 
     for (const exp of experience) {
-      expect(exp.company).toContain('Yantramedhavi India Pvt Ltd');
+      expect(exp.company).toContain('Yantramedhavi India');
       expect(exp.location).toBe('Pune, India');
       expect(exp.bullets.length).toBeGreaterThanOrEqual(2);
-      expect(exp.bullets.length).toBeLessThanOrEqual(4);
+      expect(exp.bullets.length).toBeLessThanOrEqual(5);
     }
   });
 
   it('verifies resume-backed metrics in career bullets', () => {
-    const sde2 = experience.find((e) => e.role === 'SDE II');
+    const sde2 = experience.find((e) => e.role.includes('SDE 2') || e.role.includes('SDE II'));
     expect(sde2).toBeDefined();
-    // 70% storage reduction and 0 data loss
+    // 70% storage reduction and zero data loss
     const sde2Text = sde2?.bullets.join(' ') || '';
     expect(sde2Text).toContain('70%');
-    expect(sde2Text).toContain('0 data loss');
+    expect(sde2Text).toMatch(/0 data loss|zero data loss/i);
     expect(sde2Text).toContain('WebSockets');
 
-    const rdLead = experience.find((e) => e.role === 'Manager – Software R&D');
+    const rdLead = experience.find((e) => e.role === 'Software R&D Lead / Manager');
     expect(rdLead).toBeDefined();
     const rdText = rdLead?.bullets.join(' ') || '';
     expect(rdText).toContain('99.9%+');
 
-    const sde1 = experience.find((e) => e.role === 'SDE I');
+    const sde1 = experience.find((e) => e.role.includes('SDE 1') || e.role.includes('SDE I'));
     expect(sde1).toBeDefined();
     const sde1Text = sde1?.bullets.join(' ') || '';
     expect(sde1Text).toContain('Python');
@@ -107,12 +107,12 @@ describe('Task 6: Experience Timeline, Talks, and Education', () => {
     const imtex = talks.find((t) => t.event.includes('IMTEX'));
     expect(imtex).toBeDefined();
     expect(imtex?.year).toBe('2026');
-    expect(imtex?.title).toBe('Industrial IoT Telemetry & Real-Time Factory Intelligence');
+    expect(imtex?.title).toBe('Real-Time Streaming Systems & Platform Architecture');
 
     const defence = talks.find((t) => t.event.includes('Defence Expo'));
     expect(defence).toBeDefined();
     expect(defence?.year).toBe('2024');
-    expect(defence?.title).toBe('Real-Time Machine Monitoring & Defence Manufacturing Telemetry');
+    expect(defence?.title).toBe('Real-Time Data Streaming & Low-Latency Edge Computing');
   });
 
   it('contains complete academic history including CDAC Grade A and engineering degrees', () => {
@@ -213,9 +213,9 @@ describe('Task 6: Production Build Output Inspection', () => {
 
     // Experience items rendered
     expect(html).toContain('Yantramedhavi');
-    expect(html).toContain('Manager – Software R&amp;D');
-    expect(html).toContain('SDE II');
-    expect(html).toContain('SDE I');
+    expect(html).toContain('Software R&amp;D Lead / Manager');
+    expect(html).toContain('SDE 2');
+    expect(html).toContain('SDE 1');
     expect(html).toContain('IMTEX Bangalore');
     expect(html).toContain('Maharashtra MSME Defence Expo');
     expect(html).toContain('CDAC Pune');

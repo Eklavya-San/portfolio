@@ -5,14 +5,14 @@ import { profile } from '../src/data/profile';
 describe('Nav and Identity Invariants', () => {
   it('profile name is Eklavya Ghodake and brand is claudya.in', () => {
     expect(profile.name).toBe('Eklavya Ghodake');
-    expect(profile.positioning).toContain('distributed systems');
-    expect(profile.positioning).toContain('event streaming');
+    expect(profile.positioning).toContain('factory floor');
+    expect(profile.positioning).toContain('telemetry');
   });
 
   it('profile bio contains exactly 2 sentences', () => {
     expect(profile.bio).toHaveLength(2);
-    expect(profile.bio[0]).toContain('Manager – Software R&D');
-    expect(profile.bio[1]).toContain('agentic developer tools');
+    expect(profile.bio[0]).toContain('Software R&D Lead / Manager');
+    expect(profile.bio[1]).toContain('MQTT-GO');
   });
 
   it('verified social links exist', () => {

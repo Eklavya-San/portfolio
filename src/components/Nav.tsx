@@ -6,22 +6,27 @@ interface NavProps {
 }
 
 const NAV_LINKS = [
+  { id: 'work', label: 'Work', href: '/#work' },
+  { id: 'workshop', label: 'Workshop', href: '/#workshop' },
   { id: 'experience', label: 'Experience', href: '/#experience' },
-  { id: 'work', label: 'Open Source', href: '/#work' },
   { id: 'skills', label: 'Skills', href: '/#skills' },
-  { id: 'contact', label: 'Contact', href: '/#contact' },
 ] as const;
 
 export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
   const [activeSection, setActiveSection] = useState<string>('');
   const [isScrolled, setIsScrolled] = useState<boolean>(false);
+  const [isMac, setIsMac] = useState<boolean>(true);
 
   useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      setIsMac(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform || navigator.userAgent));
+    }
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
 
       // Scrollspy calculation
-      const sectionIds = ['experience', 'work', 'skills', 'contact'];
+      const sectionIds = ['work', 'workshop', 'experience', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       // Check sections from bottom up
@@ -50,33 +55,33 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
 
   return (
     <>
-      {/* Desktop Floating Capsule Nav */}
+      {/* Desktop & Tablet Top Nav */}
       <header
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-40 hidden md:flex items-center transition-all duration-200"
-        aria-label="Primary Navigation"
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 w-[calc(100%-2rem)] max-w-4xl ${
+          isScrolled ? 'top-3' : 'top-5'
+        }`}
       >
         <nav
-          className={`flex items-center gap-1.5 sm:gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-md shadow-lg shadow-black/40 transition-all duration-200 ${
-            isScrolled ? 'px-3 py-1.5 border-[var(--border-focus)]' : 'px-4 py-2'
-          }`}
+          aria-label="Main Navigation"
+          className="flex items-center justify-between px-3.5 sm:px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-md shadow-lg shadow-black/30 transition-all duration-200"
         >
-          {/* Brand */}
+          {/* Brand Identity / Home Link */}
           <a
             href="/"
-            className="flex items-center gap-2 pl-2 pr-3 py-1 text-xs font-mono font-medium tracking-wider text-[var(--text)] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-full"
-            aria-label="claudya.in home"
+            className="flex items-center gap-2 group px-2 py-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            aria-label="claudya.in Home"
           >
             <span
-              className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent)]"
+              className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] group-hover:scale-125 transition-transform duration-200 shadow-[0_0_8px_var(--accent)]"
               aria-hidden="true"
             />
-            <span className="font-semibold">claudya.in</span>
+            <span className="font-mono text-xs sm:text-sm font-semibold tracking-tight text-[var(--text)] group-hover:text-white transition-colors">
+              claudya.in
+            </span>
           </a>
 
-          <span className="w-px h-4 bg-[var(--border)] mx-0.5" aria-hidden="true" />
-
-          {/* Section Links */}
-          <div className="flex items-center gap-1" role="menubar">
+          {/* Center Navigation Links (Hidden on small mobile) */}
+          <div className="hidden md:flex items-center gap-1" role="menubar">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -103,13 +108,15 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
           <button
             type="button"
             onClick={openCommandPalette}
-            aria-label="Cmd+K: Open Command Palette"
+            aria-label={`${isMac ? 'Cmd+K' : 'Ctrl+K'}: Open Command Palette`}
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs text-[var(--muted)] hover:text-[var(--text)] bg-[var(--surface-hover)] border border-[var(--border-subtle)] hover:border-[var(--border)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] cursor-pointer"
           >
             <Search className="w-3.5 h-3.5 text-[var(--muted)]" aria-hidden="true" />
-            <span className="sr-only sm:not-sr-only text-[11px] font-mono text-[var(--muted-dark)]">Cmd+K</span>
+            <span className="sr-only sm:not-sr-only text-[11px] font-mono text-[var(--muted-dark)]">
+              {isMac ? 'Cmd+K' : 'Ctrl+K'}
+            </span>
             <kbd aria-hidden="true" className="hidden font-mono text-[10px] px-1 py-0.2 rounded bg-black/50 text-[var(--muted)] border border-white/10">
-              ⌘K
+              {isMac ? '⌘K' : 'Ctrl+K'}
             </kbd>
           </button>
 
@@ -168,7 +175,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
           <Search className="w-4 h-4" aria-hidden="true" />
         </button>
 
-        {/* Résumé button on mobile */}
+        {/* Résumé button on mobile with accessible text */}
         <a
           href={resumeUrl}
           target="_blank"
@@ -177,6 +184,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
           className="p-2 rounded-full text-[var(--accent)] hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <FileText className="w-4 h-4" aria-hidden="true" />
+          <span className="sr-only">Résumé</span>
         </a>
       </nav>
     </>

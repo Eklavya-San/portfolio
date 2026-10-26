@@ -51,7 +51,7 @@ describe('Task 8 Verification Gates', () => {
         expect(html).toContain('The Problem &amp; Operational Context');
         expect(html).toContain('Key Architectural Decisions');
         expect(html).toContain('Interactive Architecture Topology');
-        expect(html).toContain('Measured Results &amp; Verified Outcomes');
+        expect(html).toContain('Key Architecture &amp; Capabilities');
 
         // Results
         for (const res of project.caseStudy.results) {
@@ -64,17 +64,21 @@ describe('Task 8 Verification Gates', () => {
       }
     });
 
-    it('verifies all 3 flagship case studies are independently owned open source with public repos', () => {
-      // MachineWise is NOT a public case study page (belongs exclusively in experience)
+    it('verifies all 3 flagship case studies have appropriate boundaries and repository access', () => {
+      // MachineWise is an enterprise production case study (no public repo link)
       const mwPath = join(DIST_DIR, 'work', 'machinewise', 'index.html');
-      expect(existsSync(mwPath)).toBe(false);
+      expect(existsSync(mwPath)).toBe(true);
+      const mwHtml = readFileSync(mwPath, 'utf-8');
+      expect(mwHtml).toContain('MachineWise');
+      expect(mwHtml).toContain('Enterprise Production Case Study');
+      expect(mwHtml).not.toContain('https://github.com/Eklavya-San/machinewise');
 
-      const docRagPath = join(DIST_DIR, 'work', 'document-rag', 'index.html');
-      const docRagHtml = readFileSync(docRagPath, 'utf-8');
-      expect(docRagHtml).toContain('Document RAG');
-      expect(docRagHtml).toContain('https://github.com/Eklavya-San/document_rag');
-      expect(docRagHtml).toContain('Open Source');
-      expect(docRagHtml).toContain('ChromaDB');
+      // Open source flagships have public GitHub repo links
+      const mqttPath = join(DIST_DIR, 'work', 'mqtt-go', 'index.html');
+      const mqttHtml = readFileSync(mqttPath, 'utf-8');
+      expect(mqttHtml).toContain('MQTT-GO');
+      expect(mqttHtml).toContain('https://github.com/Eklavya-San/mqttgo');
+      expect(mqttHtml).toContain('Open Source');
     });
 
     it('verifies open-source repository buttons in MQTT-GO and CTQ-Extraction', () => {
@@ -98,7 +102,7 @@ describe('Task 8 Verification Gates', () => {
   describe('Gate 2: Fluid Overlay & Navigation Routing Logic', () => {
     it('isolates section anchors from flagship modal routes', () => {
       // Valid flagship paths
-      expect(matchWorkRoute('/work/document-rag')?.slug).toBe('document-rag');
+      expect(matchWorkRoute('/work/machinewise')?.slug).toBe('machinewise');
       expect(matchWorkRoute('/work/mqtt-go')?.slug).toBe('mqtt-go');
       expect(matchWorkRoute('/work/ctq-extraction')?.slug).toBe('ctq-extraction');
 
@@ -216,7 +220,7 @@ describe('Task 8 Verification Gates', () => {
     it('verifies semantic HTML landmarks (<main>, <nav>, <footer>) on index and work pages', () => {
       const pagesToCheck = [
         join(DIST_DIR, 'index.html'),
-        join(DIST_DIR, 'work', 'document-rag', 'index.html'),
+        join(DIST_DIR, 'work', 'machinewise', 'index.html'),
         join(DIST_DIR, 'work', 'mqtt-go', 'index.html'),
         join(DIST_DIR, 'work', 'ctq-extraction', 'index.html'),
       ];

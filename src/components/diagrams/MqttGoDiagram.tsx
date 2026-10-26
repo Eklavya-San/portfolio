@@ -34,10 +34,10 @@ const NODES: DiagramNode[] = [
     id: 'go-core',
     title: 'Go Concurrency Core',
     subtitle: 'Channel Multiplexer',
-    role: 'Sub-millisecond packet routing without GC pauses',
-    tech: 'Go 1.22 • Goroutines • Lock-free Ring Channels',
-    metric: '50k+ msgs/sec Throughput',
-    details: 'Zero-allocation channel multiplexing handles bursty telemetry packets, topic filtering, and payload parsing with sub-millisecond dispatch times.',
+    role: 'Low-latency packet routing & topic filtering',
+    tech: 'Go • Goroutines • Channel Multiplexing',
+    metric: 'High-Concurrency Streaming',
+    details: 'Concurrent Go channel multiplexing handles bursty telemetry packets, topic filtering, and payload parsing with low-latency dispatch.',
     x: 270,
     y: 80,
     w: 190,
@@ -50,8 +50,8 @@ const NODES: DiagramNode[] = [
     subtitle: 'Ring Buffer & Disk WAL',
     role: 'Instant replay & historical packet scrubbing',
     tech: 'In-Memory Ring Buffer • SQLite WAL Mode',
-    metric: 'Zero-Lag Timeline Scrubbing',
-    details: 'Combines an ultralight in-memory ring buffer for immediate UI time-travel scrubbing with a high-durability write-ahead-log for persistent message inspection.',
+    metric: 'Time-Travel Timeline Scrubbing',
+    details: 'Combines an in-memory ring buffer for immediate UI time-travel scrubbing with a write-ahead log for persistent message inspection.',
     x: 525,
     y: 80,
     w: 185,
@@ -63,9 +63,9 @@ const NODES: DiagramNode[] = [
     title: 'Embedded React UI',
     subtitle: 'Single Binary Frontend',
     role: 'Lightweight desktop inspector dashboard',
-    tech: 'React 19 • Tailwind CSS • WebSockets',
+    tech: 'React • Tailwind CSS • WebSockets',
     metric: '< 100 MB RAM Footprint',
-    details: 'Runs inside a single compiled native Go binary; delivers instantaneous message filtering, topic tree navigation, and live diffing at <100MB total memory.',
+    details: 'Runs inside a single compiled native Go binary; delivers instantaneous message filtering, topic tree navigation, and live diffing within an active RAM footprint under 100MB.',
     x: 775,
     y: 80,
     w: 120,
@@ -272,31 +272,25 @@ export function MqttGoDiagram() {
         </svg>
       </div>
 
-      {/* Memory Footprint Comparison Metric */}
+      {/* Defensible Architecture Capabilities */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
         <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-3 space-y-1.5">
           <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-[var(--text)] font-semibold">MQTT-GO Native Binary</span>
+            <span className="text-[var(--text)] font-semibold">Lightweight Native Runtime</span>
             <span className="text-emerald-400 font-bold">&lt; 100 MB RAM</span>
           </div>
-          <div className="w-full h-2 rounded-full bg-black/40 overflow-hidden">
-            <div className="h-full bg-emerald-500 rounded-full" style={{ width: '16%' }} />
-          </div>
-          <p className="text-[10px] font-mono text-[var(--muted)]">
-            Compiled Go runtime + in-memory circular buffer (84% lower footprint)
+          <p className="text-xs text-[var(--muted)] leading-relaxed">
+            Compiled Go runtime with embedded React UI and local SQLite ring buffer designed for minimal workstation memory usage.
           </p>
         </div>
 
         <div className="rounded-xl border border-white/5 bg-black/30 p-3 space-y-1.5">
           <div className="flex items-center justify-between text-xs font-mono">
-            <span className="text-[var(--muted)]">Electron-based Tools</span>
-            <span className="text-rose-400/80 font-mono">500 MB+ RAM</span>
+            <span className="text-[var(--text)] font-semibold">Industrial Protocol Support</span>
+            <span className="text-cyan-400 font-mono">MQTT 3.1.1 / 5.0</span>
           </div>
-          <div className="w-full h-2 rounded-full bg-black/40 overflow-hidden">
-            <div className="h-full bg-rose-500/40 rounded-full" style={{ width: '85%' }} />
-          </div>
-          <p className="text-[10px] font-mono text-[var(--muted-dark)]">
-            Heavy Chromium runtime overhead &amp; unbounded memory growth
+          <p className="text-xs text-[var(--muted)] leading-relaxed">
+            Concurrent multi-broker streaming over TLS and WebSockets with automatic reconnect backoff jitter for factory networks.
           </p>
         </div>
       </div>

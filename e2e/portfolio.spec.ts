@@ -25,9 +25,9 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
     await expect(page.locator('text=The Problem & Operational Context').first()).toBeVisible();
     await expect(page.locator('text=Key Architectural Decisions').first()).toBeVisible();
     await expect(page.locator('text=Interactive Architecture Topology').first()).toBeVisible();
-    await expect(page.locator('text=Measured Results & Verified Outcomes').first()).toBeVisible();
+    await expect(page.locator('text=Key Architecture & Capabilities').first()).toBeVisible();
 
-    const returnLink = page.getByRole('link', { name: 'Back to All Projects' });
+    const returnLink = page.getByRole('link', { name: /Return to portfolio home|Back to All Projects/ }).first();
     await expect(returnLink).toBeVisible();
   });
 

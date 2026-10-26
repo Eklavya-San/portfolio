@@ -22,40 +22,22 @@ import { skills } from '../data/skills';
     {/* Hero Section with Live Telemetry */}
     <Hero />
 
-    {/* Verified Engineering Proof Strip */}
+    {/* Verified Engineering Proof Strip (Impact) */}
     <ProofStrip />
 
-    {/* Section 1: Professional Experience & Leadership */}
-    <section id="experience" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
-      <div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] mb-3">
-          <span>// 01</span>
-          <span>PROFESSIONAL EXPERIENCE</span>
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
-          Engineering Leadership &amp; Track Record
-        </h2>
-        <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
-          Leading industrial software architecture, on-premises applied AI, resilient infrastructure, and enterprise execution.
-        </p>
-      </div>
-
-      <Experience client:visible />
-    </section>
-
-    {/* Section 2: Selected Open-Source Work & Case Studies */}
+    {/* Section 1: Selected Work & Case Studies */}
     <section id="work" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent-2)] mb-3">
-            <span>// 02</span>
-            <span>OPEN-SOURCE FLAGSHIPS</span>
+            <span>// 01</span>
+            <span>SELECTED WORK</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
-            Open-Source Tools &amp; Applied AI
+            Selected Work &amp; Case Studies
           </h2>
           <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
-            Independently built and maintained developer utilities, agent skills, and privacy-preserving AI engines.
+            Production industrial telemetry platform, lightweight network debugging tools, and vision-based drawing extraction.
           </p>
         </div>
       </div>
@@ -63,14 +45,32 @@ import { skills } from '../data/skills';
       <FlagshipSection flagships={flagships} client:load />
     </section>
 
-    {/* Workshop: Experiments & Open Source */}
+    {/* Section 2: Workshop & Open Source Tools */}
     <Workshop />
 
-    {/* Section 3: Technical Skills & Protocols */}
+    {/* Section 3: Professional Experience & Leadership */}
+    <section id="experience" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] mb-3">
+          <span>// 03</span>
+          <span>PROFESSIONAL EXPERIENCE</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
+          Engineering Leadership &amp; Track Record
+        </h2>
+        <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
+          Leading industrial software architecture, event-driven streaming pipelines, and mission-critical production systems.
+        </p>
+      </div>
+
+      <Experience client:visible />
+    </section>
+
+    {/* Section 4: Technical Skills & Protocols */}
     <section id="skills" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
       <div>
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] mb-3">
-          <span>// 03</span>
+          <span>// 04</span>
           <span>TECHNICAL ARSENAL</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
@@ -108,7 +108,7 @@ import { skills } from '../data/skills';
     {/* Community Section (Conditionally rendered) */}
     <Community />
 
-    {/* Section 4: Contact & Engagement */}
+    {/* Section 5: Contact & Engagement */}
     <Contact />
 
     {/* Footer with Attribution & Smooth Back-to-Top */}
