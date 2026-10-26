@@ -29,7 +29,16 @@ export interface WorkshopCard {
   stack: string[];
   demoUrl?: string;
   description?: string;
+  repoUrl?: string;
+  pushedAt?: string;
+  language?: string;
+  topics?: string[];
+  stars?: number;
 }
+
+export type WorkshopOverride = Partial<WorkshopCard> & {
+  repo: string;
+};
 
 export interface Metric {
   value: string;

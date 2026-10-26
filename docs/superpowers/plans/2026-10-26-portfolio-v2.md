@@ -139,12 +139,12 @@ Home section order: Hero → Proof strip → Flagships → Workshop → Experien
 
 **Files:** `src/lib/github.ts`, `src/data/workshop.ts`
 
-- [ ] **Step 1:** At build, fetch `GET https://api.github.com/users/Eklavya-San/repos?per_page=100` (use `GITHUB_TOKEN` if present to avoid rate limits).
-- [ ] **Step 2:** Keep only repos that are public, not forks, and whose name appears in `workshop.overrides.ts`. Merge: overrides win for title/tagline/tags/order; GitHub supplies description fallback, language, topics, `pushed_at`.
-- [ ] **Step 3:** If the API fails, fall back entirely to overrides (build must never fail because of GitHub).
-- [ ] **Step 4:** Drop any card with no tagline after merge and log a warning.
-- [ ] **Step 5:** Unit test the merge function (Vitest): override precedence, fork exclusion, private exclusion, fallback path.
-- [ ] **Step 6:** Commit.
+- [x] **Step 1:** At build, fetch `GET https://api.github.com/users/Eklavya-San/repos?per_page=100` (use `GITHUB_TOKEN` if present to avoid rate limits).
+- [x] **Step 2:** Keep only repos that are public, not forks, and whose name appears in `workshop.overrides.ts`. Merge: overrides win for title/tagline/tags/order; GitHub supplies description fallback, language, topics, `pushed_at`.
+- [x] **Step 3:** If the API fails, fall back entirely to overrides (build must never fail because of GitHub).
+- [x] **Step 4:** Drop any card with no tagline after merge and log a warning.
+- [x] **Step 5:** Unit test the merge function (Vitest): override precedence, fork exclusion, private exclusion, fallback path.
+- [x] **Step 6:** Commit.
 
 ## Task 4: Nav, Hero, Proof strip
 
