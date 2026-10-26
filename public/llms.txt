@@ -1,0 +1,31 @@
+# Eklavya Ghodake
+
+> Software for the factory floor: real-time telemetry, and AI that reads engineering drawings.
+
+Eklavya Ghodake is a Software R&D Lead and Senior Software Engineer based in Pune, India, specializing in high-throughput distributed systems, industrial IoT protocols (MQTT, Modbus, Fanuc/Siemens CNC), and applied AI agent systems.
+
+- Website: https://claudya.in
+- GitHub: https://github.com/Eklavya-San
+- LinkedIn: https://linkedin.com/in/eklavya-ghodake-0bb604197
+- X (Twitter): https://x.com/eghodake
+- Email: eklavyaghodake@gmail.com
+
+## Flagship Systems
+
+- [MachineWise](https://claudya.in/work/machinewise/): Industrial IoT streaming platform slashing time-series database storage costs by 70% with 0 data loss recovery across MongoDB clusters.
+- [MQTT-GO](https://claudya.in/work/mqtt-go/): Ultralight concurrent MQTT client with time-travel debugging, multi-broker streams, and sub-100MB active RAM footprint.
+- [CTQ-Extraction](https://claudya.in/work/ctq-extraction/): AI agent skill extracting Critical-To-Quality GD&T parameters and verbatim tolerances from engineering drawings into validated JSON.
+
+## Verified Production Benchmarks
+
+- **-70% DB Storage:** Database storage footprint reduction after transitioning to event-driven on-change compression and aggregated time-series storage.
+- **0 Data Loss:** Disaster recovery across MongoDB replica sets in enterprise production deployments.
+- **< 100 MB RAM:** Active memory footprint of MQTT-GO client (compared to Electron-based tools).
+- **99.9%+ Platform Uptime:** Maintained across multi-plant industrial IoT deployments.
+
+## Open Source & Developer Tooling
+
+- [use-shadcn](https://github.com/Eklavya-San/use-shadcn): AI agent skill for refactoring UI and generating Obsidian Dark interfaces with shadcn/ui.
+- [dsh-agent-mcp](https://github.com/Eklavya-San/dsh-agent-mcp): MCP server connecting Antigravity and Claude Code to DeepSeek Harness for $0-cost autonomous coding.
+- [mqtt-queue](https://github.com/Eklavya-San/mqtt-queue): High-throughput queueing and logging for MQTT topic messages.
+- [Document RAG](https://github.com/Eklavya-San/document_rag): On-premise retrieval augmented generation with local LLMs and zero data egress.

@@ -18,9 +18,34 @@ const { flagship } = Astro.props;
 
 const pageTitle = `${flagship.title} — Case Study | Eklavya Ghodake`;
 const pageDescription = flagship.tagline;
+
+const caseStudySchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: `${flagship.title} Case Study: ${flagship.tagline}`,
+  description: flagship.tagline,
+  author: {
+    '@type': 'Person',
+    name: 'Eklavya Ghodake',
+    jobTitle: 'Senior Software Engineer',
+    url: 'https://claudya.in',
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Eklavya Ghodake',
+  },
+  url: `https://claudya.in/work/${flagship.slug}/`,
+  image: `https://claudya.in/og/${flagship.slug}.png`,
+  about: flagship.metrics.map((m) => `${m.value} ${m.label}`),
+};
 ---
 
-<Base title={pageTitle} description={pageDescription} ogImage={`/og/${flagship.slug}.png`}>
+<Base
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={`/og/${flagship.slug}.png`}
+  schema={caseStudySchema}
+>
   <Nav client:load />
   <CommandPalette client:idle />
 

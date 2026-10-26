@@ -13,6 +13,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   ogType?: string;
+  schema?: Record<string, any>;
 }
 
 const {
@@ -20,26 +21,53 @@ const {
   description = 'Senior Software Engineer building high-throughput distributed systems, real-time event streaming pipelines, and applied AI developer tooling.',
   ogImage = '/og/default.png',
   ogType = 'website',
+  schema,
 } = Astro.props;
 
 const siteUrl = Astro.site ? Astro.site.origin : 'https://claudya.in';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 const fullOgImageUrl = ogImage.startsWith('http') ? ogImage : new URL(ogImage, siteUrl).href;
 
-const personSchema = {
+const defaultSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Eklavya Ghodake',
-  jobTitle: 'Senior Software Engineer',
+  '@type': 'ProfilePage',
+  mainEntity: {
+    '@type': 'Person',
+    name: 'Eklavya Ghodake',
+    jobTitle: 'Senior Software Engineer',
+    url: 'https://claudya.in',
+    image: `${siteUrl}/og/default.png`,
+    description: description,
+    sameAs: [
+      'https://github.com/Eklavya-San',
+      'https://linkedin.com/in/eklavya-ghodake-0bb604197',
+      'https://x.com/eghodake',
+    ],
+    knowsAbout: [
+      'Distributed Systems',
+      'Industrial IoT',
+      'MQTT',
+      'High-Throughput Telemetry',
+      'MongoDB',
+      'React',
+      'Applied AI',
+      'AI Agent Protocols',
+      'TypeScript',
+      'Go',
+    ],
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Yantramedhavi India Pvt Ltd',
+    },
+    alumniOf: {
+      '@type': 'EducationalOrganization',
+      name: 'IACSD CDAC Pune',
+    },
+  },
   url: 'https://claudya.in',
-  image: `${siteUrl}/og/default.png`,
-  description: description,
-  sameAs: [
-    'https://github.com/Eklavya-San',
-    'https://linkedin.com/in/eklavya-ghodake-0bb604197',
-    'https://x.com/eghodake',
-  ],
 };
+
+const jsonLd = schema || defaultSchema;
 ---
 
 <!doctype html>
@@ -50,6 +78,7 @@ const personSchema = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#030712" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -75,7 +104,7 @@ const personSchema = {
     <meta name="twitter:image" content={fullOgImageUrl} />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="bg-[var(--bg)] text-[var(--text)] antialiased min-h-screen selection:bg-[var(--accent)] selection:text-black">
     <slot />
