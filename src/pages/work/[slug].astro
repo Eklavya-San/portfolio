@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import { Nav } from '../../components/Nav';
+import { CommandPalette } from '../../components/CommandPalette';
+import { CaseStudyView } from '../../components/CaseStudyView';
+import { getWorkStaticPaths } from '../../lib/work';
+import type { Flagship } from '../../types/portfolio';
+
+export function getStaticPaths() {
+  return getWorkStaticPaths();
+}
+
+interface Props {
+  flagship: Flagship;
+}
+
+const { flagship } = Astro.props;
+
+const pageTitle = `${flagship.title} — Case Study | Eklavya Ghodake`;
+const pageDescription = flagship.tagline;
+---
+
+<Base title={pageTitle} description={pageDescription}>
+  <Nav client:load />
+  <CommandPalette client:idle />
+
+  <main class="min-h-screen max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 md:pt-32 pb-24">
+    <CaseStudyView flagship={flagship} isStandalone={true} client:load />
+  </main>
+
+  <footer class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--muted)]">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
+      <a href="/" class="text-[var(--text)] font-semibold hover:text-[var(--accent)] transition-colors">
+        claudya.in
+      </a>
+      <span class="text-[var(--muted-dark)]">•</span>
+      <span>© 2026 Eklavya Ghodake</span>
+    </div>
+    <div class="text-[var(--muted-dark)] text-center sm:text-right">
+      Obsidian Capsule System • Pune, India
+    </div>
+  </footer>
+</Base>

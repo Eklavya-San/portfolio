@@ -4,6 +4,7 @@ import { Nav } from '../components/Nav';
 import { CommandPalette } from '../components/CommandPalette';
 import Hero from '../components/Hero.astro';
 import ProofStrip from '../components/ProofStrip.astro';
+import { FlagshipSection } from '../components/FlagshipSection';
 import { flagships } from '../data/flagships';
 import { experience } from '../data/experience';
 import { skills } from '../data/skills';
@@ -38,32 +39,7 @@ import { profile } from '../data/profile';
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {flagships.map((project) => (
-          <div class="group rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 flex flex-col justify-between hover:border-[var(--accent)]/40 transition-all duration-200">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between text-xs font-mono">
-                <span class="px-2.5 py-0.5 rounded-full border border-white/10 bg-black/40 text-[var(--accent-2)]">
-                  {project.badge}
-                </span>
-              </div>
-              <h3 class="text-lg font-bold text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
-                {project.title}
-              </h3>
-              <p class="text-xs text-[var(--muted)] leading-relaxed">
-                {project.tagline}
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-white/5 flex flex-wrap gap-1.5">
-              {project.stack.slice(0, 3).map((tech) => (
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-black/30 border border-white/5 text-[var(--muted)]">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <FlagshipSection flagships={flagships} client:load />
     </section>
 
     {/* Section 2: Experience & Leadership */}
