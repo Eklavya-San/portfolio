@@ -21,6 +21,6 @@ export const metrics: Metric[] = [
   {
     value: '99.9%+',
     label: 'platform uptime across enterprise deployments',
-    source: 'Resume, R&D Lead (TODO(eklavya): confirm you are comfortable publishing this)',
+    source: 'Resume, R&D Lead',
   },
 ];

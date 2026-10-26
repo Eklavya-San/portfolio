@@ -65,7 +65,6 @@ export const skills: SkillGroup[] = [
     skills: [
       { name: 'MQTT', highlight: true },
       { name: 'Edge Telemetry Ingestion', highlight: true },
-      { name: 'Fanuc FOCAS (TODO(eklavya): confirm industrial protocol experience beyond driver fork)' },
     ],
   },
 ];

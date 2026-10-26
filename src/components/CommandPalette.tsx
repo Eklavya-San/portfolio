@@ -13,7 +13,7 @@ import {
   X,
   Command,
 } from 'lucide-react';
-import { profile } from '../data/profile';
+import { profileLinks } from '../data/profile';
 
 interface CommandItem {
   id: string;
@@ -133,7 +133,7 @@ export function CommandPalette() {
         keywords: ['code', 'repo', 'git', 'profile', 'oss'],
         icon: <ExternalLink className="w-4 h-4 text-[var(--muted)]" />,
         action: () => {
-          window.open(profile.links.github, '_blank', 'noopener,noreferrer');
+          window.open(profileLinks.github, '_blank', 'noopener,noreferrer');
         },
       },
       {
@@ -144,8 +144,8 @@ export function CommandPalette() {
         keywords: ['connect', 'network', 'linkedin'],
         icon: <ExternalLink className="w-4 h-4 text-[var(--muted)]" />,
         action: () => {
-          const url = profile.links.linkedin.startsWith('http')
-            ? profile.links.linkedin
+          const url = profileLinks.linkedin.startsWith('http')
+            ? profileLinks.linkedin
             : 'https://www.linkedin.com/search/results/all/?keywords=Eklavya%20Ghodake';
           window.open(url, '_blank', 'noopener,noreferrer');
         },
@@ -158,7 +158,7 @@ export function CommandPalette() {
         keywords: ['twitter', 'x', 'social', 'updates'],
         icon: <ExternalLink className="w-4 h-4 text-[var(--muted)]" />,
         action: () => {
-          window.open(profile.links.x, '_blank', 'noopener,noreferrer');
+          window.open(profileLinks.x, '_blank', 'noopener,noreferrer');
         },
       },
     ],

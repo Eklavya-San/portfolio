@@ -6,10 +6,10 @@ interface NavProps {
 }
 
 const NAV_LINKS = [
-  { id: 'work', label: 'Work', href: '#work' },
-  { id: 'experience', label: 'Experience', href: '#experience' },
-  { id: 'skills', label: 'Skills', href: '#skills' },
-  { id: 'contact', label: 'Contact', href: '#contact' },
+  { id: 'work', label: 'Work', href: '/#work' },
+  { id: 'experience', label: 'Experience', href: '/#experience' },
+  { id: 'skills', label: 'Skills', href: '/#skills' },
+  { id: 'contact', label: 'Contact', href: '/#contact' },
 ] as const;
 
 export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
@@ -62,7 +62,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
         >
           {/* Brand */}
           <a
-            href="#"
+            href="/"
             className="flex items-center gap-2 pl-2 pr-3 py-1 text-xs font-mono font-medium tracking-wider text-[var(--text)] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-full"
             aria-label="claudya.in home"
           >
@@ -127,7 +127,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
 
           {/* Primary CTA */}
           <a
-            href="#contact"
+            href="/#contact"
             className="flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent)] text-black hover:bg-[var(--accent-hover)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-xs ml-1"
           >
             <span>Let's talk</span>

@@ -88,7 +88,7 @@ import { skills } from '../data/skills';
               {group.title}
             </h3>
             <div class="flex flex-wrap gap-1.5">
-              {group.skills.map((item) => (
+              {group.skills.filter((item) => !item.name.toLowerCase().includes('todo')).map((item) => (
                 <span
                   class={`text-xs px-2.5 py-1 rounded-full font-mono ${
                     item.highlight
