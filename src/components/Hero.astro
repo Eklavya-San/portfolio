@@ -1,39 +1,39 @@
 ---
 import { profile } from '../data/profile';
-import { TelemetryHero } from './TelemetryHero';
-import { TextScramble } from './TextScramble';
+import { SystemMapCard } from './SystemMapCard';
 
 const linkedinUrl = profile.links.linkedin.startsWith('http')
   ? profile.links.linkedin
-  : 'https://www.linkedin.com/search/results/all/?keywords=Eklavya%20Ghodake';
+  : 'https://www.linkedin.com/in/eklavya-ghodake-0bb604197';
 ---
 
 <section class="w-full pt-8 pb-12 sm:pt-12 sm:pb-16" aria-labelledby="hero-heading">
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
     {/* Left Column: Identity, Positioning, Bio, CTAs, Socials */}
     <div class="lg:col-span-7 space-y-6">
-      {/* Badges */}
-      <div class="flex flex-wrap items-center gap-2.5">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]">
-          <span class="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shadow-[0_0_8px_var(--accent)]" aria-hidden="true"></span>
-          <span class="font-medium text-[var(--text)]">claudya.in</span>
+      {/* Availability Pill & Eyebrow */}
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-[#5ca54a] shadow-[0_0_6px_rgba(92,165,74,0.4)] animate-pulse" aria-hidden="true"></span>
+          <span>Building at the intersection of software &amp; AI</span>
         </div>
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent-2)]">
-          <span class="opacity-60">&gt;</span>
-          <span>Software R&D Lead / Manager</span>
+
+        <div class="font-mono text-xs uppercase tracking-wider text-[var(--muted)] font-semibold flex items-center gap-2">
+          <span>//</span>
+          <span>Manager — Software R&amp;D · Full-stack · Applied AI</span>
         </div>
       </div>
 
-      {/* Primary <h1> Name with Cyber-Industrial Text Scramble */}
-      <div class="space-y-2">
+      {/* Primary <h1> Editorial Headline with Marker Highlight */}
+      <div class="space-y-3">
         <h1
           id="hero-heading"
-          class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text)] leading-[1.1]"
+          class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[var(--text)] leading-[1.02]"
         >
-          <TextScramble client:load text={profile.name} as="span" hoverTrigger={true} />
+          I build software for <span class="highlight-marker">complex worlds.</span>
         </h1>
-        <p class="text-xl sm:text-2xl font-medium text-[var(--text)] leading-snug max-w-xl">
-          {profile.positioning}
+        <p class="text-lg sm:text-xl font-medium text-[var(--text)] leading-snug max-w-xl">
+          I'm <strong class="font-bold">{profile.name}</strong> — {profile.positioning}
         </p>
       </div>
 
@@ -47,23 +47,28 @@ const linkedinUrl = profile.links.linkedin.startsWith('http')
       <div class="pt-2 flex flex-wrap items-center gap-3">
         <a
           href="#work"
-          class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-[var(--accent)] text-black hover:bg-[var(--accent-hover)] transition-all duration-200 shadow-md shadow-emerald-950/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-sm font-bold bg-[#c8f169] text-[#14221f] hover:bg-[#d8f88f] transition-all duration-200 shadow-md shadow-lime-950/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c8f169]"
         >
-          <span>See the work</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <polyline points="19 12 12 19 5 12"></polyline>
-          </svg>
+          <span>Explore open-source work</span>
+          <span class="text-sm">↗</span>
+        </a>
+
+        <a
+          href="#experience"
+          class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--border-focus)] hover:bg-[var(--surface-hover)] transition-colors duration-200"
+        >
+          <span>My experience</span>
+          <span class="text-sm">↓</span>
         </a>
 
         <a
           href="/Eklavya_Ghodake_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--border-focus)] hover:bg-[var(--surface-hover)] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-medium border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:border-[var(--border-focus)] hover:bg-[var(--surface-hover)] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
         >
           <span>Résumé</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
             <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -74,13 +79,13 @@ const linkedinUrl = profile.links.linkedin.startsWith('http')
       </div>
 
       {/* Social Links */}
-      <div class="pt-2 flex flex-wrap items-center gap-2 text-xs font-mono text-[var(--muted)]" aria-label="Social and Contact Links">
+      <div class="pt-2 flex flex-wrap items-center gap-3 text-xs font-mono text-[var(--muted)]" aria-label="Social and Contact Links">
         {/* GitHub */}
         <a
           href={profile.links.github}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--border)] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--border)] hover:text-[var(--text)] transition-colors"
           aria-label="GitHub profile @Eklavya-San"
         >
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -94,7 +99,7 @@ const linkedinUrl = profile.links.linkedin.startsWith('http')
           href={linkedinUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--border)] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--border)] hover:text-[var(--text)] transition-colors"
           aria-label="LinkedIn profile"
         >
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
@@ -103,38 +108,24 @@ const linkedinUrl = profile.links.linkedin.startsWith('http')
           <span>LinkedIn</span>
         </a>
 
-        {/* X */}
-        <a
-          href={profile.links.x}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--border)] hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-          aria-label="X (Twitter) profile @eghodake"
-        >
-          <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
-          </svg>
-          <span>@eghodake</span>
-        </a>
-
         {/* Email */}
         <a
           href={profile.links.email}
-          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-          aria-label="Send email to eklavyaghodake@gmail.com"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[var(--border-subtle)] bg-[var(--surface)] hover:border-[var(--border)] hover:text-[var(--text)] transition-colors"
+          aria-label="Email link"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m4 7 8 6 8-6" />
           </svg>
           <span>Email</span>
         </a>
       </div>
     </div>
 
-    {/* Right Column: Telemetry Hero Live Simulation */}
-    <div class="lg:col-span-5 flex justify-center lg:justify-end">
-      <TelemetryHero client:idle />
+    {/* Right Column: System Map / Telemetry Card */}
+    <div class="lg:col-span-5">
+      <SystemMapCard client:load />
     </div>
   </div>
 </section>

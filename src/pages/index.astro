@@ -3,9 +3,11 @@ import Base from '../layouts/Base.astro';
 import { Nav } from '../components/Nav';
 import { CommandPalette } from '../components/CommandPalette';
 import Hero from '../components/Hero.astro';
+import ValuesStrip from '../components/ValuesStrip.astro';
 import ProofStrip from '../components/ProofStrip.astro';
 import { FlagshipSection } from '../components/FlagshipSection';
 import OperatorProfile from '../components/OperatorProfile.astro';
+import AppliedAiSection from '../components/AppliedAiSection.astro';
 import Workshop from '../components/Workshop.astro';
 import { Experience } from '../components/Experience';
 import Community from '../components/Community.astro';
@@ -20,8 +22,11 @@ import { skills } from '../data/skills';
   <CommandPalette client:idle />
 
   <main class="min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 md:pt-28 pb-24 flex flex-col gap-12 sm:gap-16">
-    {/* Hero Section with Live Telemetry */}
+    {/* Hero Section with Editorial Headline & System Map / Telemetry */}
     <Hero />
+
+    {/* Values / Useful Engineering Strip */}
+    <ValuesStrip />
 
     {/* Verified Engineering Proof Strip (Impact) */}
     <ProofStrip />
@@ -35,15 +40,26 @@ import { skills } from '../data/skills';
             <span>SELECTED WORK</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
-            Selected Work &amp; Case Studies
+            Open-Source Tools &amp; Case Studies
           </h2>
           <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
-            Production industrial telemetry platform, lightweight network debugging tools, and vision-based drawing extraction.
+            High-throughput industrial telemetry, lightweight network debugging platforms, and vision-based drawing extraction.
           </p>
         </div>
       </div>
 
       <FlagshipSection flagships={flagships} client:load />
+
+      {/* Confidentiality & Integrity Note */}
+      <div class="flex items-start gap-3 p-4 sm:p-5 rounded-2xl border border-dashed border-[var(--border)] text-xs text-[var(--muted)] leading-relaxed bg-[var(--surface)]/50">
+        <svg class="w-5 h-5 text-[var(--accent)] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3 4 6v6c0 4.4 3.3 7.4 8 9 4.7-1.6 8-4.6 8-9V6z" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+        <span>
+          <strong class="text-[var(--text)] font-semibold">Professional work stays professional.</strong> Independently maintained open-source and agent tools are showcased above. Employer work is detailed through responsibilities, engineering architecture, and verified metrics—preserving intellectual property and client privacy.
+        </span>
+      </div>
     </section>
 
     {/* Section 2: Operator Profile & Mechanical/Systems Domain Foundation */}
@@ -67,14 +83,17 @@ import { skills } from '../data/skills';
       <Experience client:visible />
     </section>
 
-    {/* Section 4: Workshop & Open Source Tools */}
+    {/* Section 4: Applied AI in Practice */}
+    <AppliedAiSection />
+
+    {/* Section 5: Workshop & Open Source Tools */}
     <Workshop />
 
-    {/* Section 5: Technical Skills & Protocols */}
+    {/* Section 6: Technical Skills & Protocols */}
     <section id="skills" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
       <div>
         <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] mb-3">
-          <span>// 05</span>
+          <span>// 06</span>
           <span>TECHNICAL ARSENAL</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">

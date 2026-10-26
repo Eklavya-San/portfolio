@@ -7,11 +7,11 @@ interface NavProps {
 }
 
 const NAV_LINKS = [
-  { id: 'work', label: 'Work', href: '/#work' },
-  { id: 'profile', label: 'Profile', href: '/#profile' },
-  { id: 'experience', label: 'Experience', href: '/#experience' },
-  { id: 'workshop', label: 'Workshop', href: '/#workshop' },
-  { id: 'skills', label: 'Skills', href: '/#skills' },
+  { id: 'work', label: 'Work', desktopLabel: 'Open source', href: '/#work' },
+  { id: 'profile', label: 'Profile', desktopLabel: 'Profile', href: '/#profile' },
+  { id: 'experience', label: 'Experience', desktopLabel: 'Experience', href: '/#experience' },
+  { id: 'applied-ai', label: 'AI', desktopLabel: 'Applied AI', href: '/#applied-ai' },
+  { id: 'skills', label: 'Skills', desktopLabel: 'Skills', href: '/#skills' },
 ] as const;
 
 export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
@@ -28,7 +28,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
       setIsScrolled(window.scrollY > 30);
 
       // Scrollspy calculation
-      const sectionIds = ['work', 'profile', 'experience', 'workshop', 'skills', 'contact'];
+      const sectionIds = ['work', 'profile', 'experience', 'applied-ai', 'workshop', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       // Check sections from bottom up
@@ -59,26 +59,32 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
     <>
       {/* Desktop & Tablet Top Nav */}
       <header
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 w-[calc(100%-2rem)] max-w-4xl ${
+        className={`fixed top-4 left-1/2 -translate-x-1/2 z-40 transition-all duration-300 w-[calc(100%-2rem)] max-w-5xl ${
           isScrolled ? 'top-3' : 'top-5'
         }`}
       >
         <nav
           aria-label="Main Navigation"
-          className="flex items-center justify-between px-3.5 sm:px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-md shadow-lg shadow-black/30 transition-all duration-200"
+          className="flex items-center justify-between px-3.5 sm:px-4 py-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur-md shadow-lg shadow-black/10 dark:shadow-black/40 transition-all duration-200"
         >
           {/* Brand Identity / Home Link */}
           <a
             href="/"
             className="flex items-center gap-2 group px-2 py-1 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
-            aria-label="claudya.in Home"
           >
             <span
-              className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] group-hover:scale-125 transition-transform duration-200 shadow-[0_0_8px_var(--accent)]"
+              className="grid place-items-center w-7 h-7 rounded-lg bg-[#14221f] text-[#c8f169] text-xs font-mono font-bold tracking-tight shadow-xs group-hover:scale-105 transition-transform"
               aria-hidden="true"
-            />
-            <span className="font-mono text-xs sm:text-sm font-semibold tracking-tight text-[var(--text)] group-hover:text-white transition-colors">
-              claudya.in
+            >
+              EG.
+            </span>
+            <span className="flex flex-col leading-none">
+              <span className="font-mono text-xs sm:text-sm font-bold tracking-tight text-[var(--text)] group-hover:text-[var(--accent)] transition-colors">
+                claudya.in
+              </span>
+              <span className="text-[9px] font-mono text-[var(--muted)] uppercase tracking-wider hidden sm:inline">
+                Software · Systems · AI
+              </span>
             </span>
           </a>
 
@@ -98,13 +104,13 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
                       : 'text-[var(--muted)] hover:text-[var(--text)] hover:bg-white/5'
                   }`}
                 >
-                  {link.label}
+                  {link.desktopLabel}
                 </a>
               );
             })}
           </div>
 
-          <span className="w-px h-4 bg-[var(--border)] mx-0.5" aria-hidden="true" />
+          <span className="hidden sm:block w-px h-4 bg-[var(--border)] mx-0.5" aria-hidden="true" />
 
           {/* Cmd+K Quick Search Trigger */}
           <button
@@ -130,7 +136,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
             href={resumeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium text-[var(--muted)] hover:text-[var(--text)] hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            className="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium text-[var(--muted)] hover:text-[var(--text)] hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
             aria-label="Download Résumé (opens in new tab)"
           >
             <FileText className="w-3.5 h-3.5" aria-hidden="true" />
@@ -140,7 +146,7 @@ export function Nav({ resumeUrl = '/Eklavya_Ghodake_Resume.pdf' }: NavProps) {
           {/* Primary CTA */}
           <a
             href="/#contact"
-            className="flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent)] text-black hover:bg-[var(--accent-hover)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-xs ml-1"
+            className="hidden sm:flex items-center gap-1 px-3.5 py-1 rounded-full text-xs font-semibold bg-[var(--accent)] text-black hover:bg-[var(--accent-hover)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white shadow-xs ml-1"
           >
             <span>Let's talk</span>
             <ArrowRight className="w-3 h-3" aria-hidden="true" />
