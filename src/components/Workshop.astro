@@ -1,0 +1,63 @@
+---
+import { getWorkshopProjects } from '../data/workshop';
+import WorkshopCard from './WorkshopCard.astro';
+
+// Fetch workshop projects at build time
+const allProjects = await getWorkshopProjects();
+
+// Omit incomplete cards whose tagline is still a pending TODO (per Plan v2 line 60)
+const projects = allProjects.filter(
+  (p) => p.tagline && !p.tagline.toLowerCase().startsWith('todo')
+);
+---
+
+<section id="workshop" class="scroll-mt-24 pt-10 border-t border-[var(--border-subtle)] space-y-6">
+  <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <div>
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-[var(--border)] bg-[var(--surface)] text-[var(--accent)] mb-3">
+        <span>// WORKSHOP</span>
+        <span>EXPERIMENTS &amp; OPEN SOURCE</span>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[var(--text)]">
+        Open Source &amp; Developer Tooling
+      </h2>
+      <p class="text-sm text-[var(--muted)] mt-1.5 max-w-xl">
+        Experimental agent skills, local RAG architectures, MCP servers, and lightweight IoT protocol utilities.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {projects.map((project) => (
+      <WorkshopCard project={project} />
+    ))}
+  </div>
+</section>
+
+<script>
+  // Pointer-follow glow on cards via CSS variables --mx/--my (Fluid UX #8)
+  // No JS re-render: updates inline CSS custom properties directly on the DOM element
+  function initPointerGlow() {
+    if (typeof window === 'undefined' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    const cards = document.querySelectorAll<HTMLElement>('.workshop-card');
+    cards.forEach((card) => {
+      card.addEventListener('pointermove', (e: PointerEvent) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      });
+
+      card.addEventListener('pointerleave', () => {
+        card.style.setProperty('--mx', '-9999px');
+        card.style.setProperty('--my', '-9999px');
+      });
+    });
+  }
+
+  // Run on initial load and support View Transitions swap if applicable
+  initPointerGlow();
+  document.addEventListener('astro:page-load', initPointerGlow);
+</script>
