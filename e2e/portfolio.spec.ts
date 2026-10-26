@@ -18,8 +18,8 @@ test.describe('Claudya Portfolio E2E & Accessibility Suite', () => {
     await page.goto('/work/machinewise');
     await expect(page).toHaveTitle(/MachineWise/);
 
-    const h1 = page.locator('h1');
-    await expect(h1).toContainText('MachineWise');
+    const h1 = page.getByRole('heading', { level: 1, name: 'MachineWise' });
+    await expect(h1).toBeVisible();
 
     await expect(page.locator('text=Enterprise Case Study').first()).toBeVisible();
     await expect(page.locator('text=The Problem & Operational Context').first()).toBeVisible();
